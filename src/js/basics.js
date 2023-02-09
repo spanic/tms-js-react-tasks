@@ -13,4 +13,11 @@ function sum(...numbers) {
   }, 0);
 }
 
-module.exports = sum;
+function factorial(number) {
+  if (number === 0) {
+    return 1;
+  }
+  return number * factorial(number - 1);
+}
+
+module.exports = { sum, factorial };
