@@ -15,14 +15,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --verbose",
+    "test:nowatch": "npm run test -- --watchAll=false",
+    "lint": "eslint --ext .js --max-warnings 0 .",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "prettier --write .",
+    "prepare": "husky install",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "prettier"
-    ]
   },
   "browserslist": {
     "production": [
@@ -38,6 +36,7 @@
   },
   "devDependencies": {
     "eslint-config-prettier": "^8.6.0",
+    "husky": "^8.0.3",
     "prettier": "^2.8.4"
   }
 }

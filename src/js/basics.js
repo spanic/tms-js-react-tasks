@@ -5,7 +5,7 @@ function sum(...numbers) {
   return numbers.reduce((result, currentValue) => {
     if (isNaN(currentValue)) {
       throw new Error(
-        `Argument '${currentValue}' cannot be converted to number, please check the inputs`,
+        `Argument '${currentValue}' cannot be converted to number, please check the inputs`
       );
     } else {
       return result + Number(currentValue);

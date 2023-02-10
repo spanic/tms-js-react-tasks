@@ -20,8 +20,8 @@ describe('Validating sum() function', () => {
       expect(() => sum(1, 'UH%42', 3)),
     ].every((value) =>
       value.toThrowError(
-        /^argument '.*' cannot be converted to number, please check the inputs$/i,
-      ),
+        /^argument '.*' cannot be converted to number, please check the inputs$/i
+      )
     );
   });
 });
