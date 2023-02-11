@@ -20,4 +20,12 @@ function factorial(number) {
   return number * factorial(number - 1);
 }
 
-module.exports = { sum, factorial };
+function onClick() {
+  alert('Wow!');
+}
+
+function sayHello() {
+  console.log('Hello, world!');
+}
+
+export { sum, factorial, onClick, sayHello };

@@ -12,11 +12,13 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npm run build:js && react-scripts start",
+    "build": "npm run build:js && react-scripts build",
+    "build:js": "rollup -c",
+    "serve": "npm run build && serve -s build -l 4000",
     "test": "react-scripts test --verbose",
     "test:nowatch": "npm run test -- --watchAll=false",
-    "lint": "eslint --ext .js --max-warnings 0 .",
+    "lint": "eslint --ext .js --max-warnings 0 --ignore-path .gitignore .",
     "lint:fix": "npm run lint -- --fix",
     "prettier": "prettier --write .",
     "prepare": "husky install",
@@ -37,6 +39,8 @@
   "devDependencies": {
     "eslint-config-prettier": "^8.6.0",
     "husky": "^8.0.3",
-    "prettier": "^2.8.4"
+    "prettier": "^2.8.4",
+    "rollup": "^2.79.1",
+    "serve": "^14.2.0"
   }
 }

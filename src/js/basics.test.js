@@ -1,4 +1,4 @@
-const { sum, factorial } = require('./basics');
+import { sum, factorial } from './basics';
 
 describe('Validating sum() function', () => {
   test('works fine with numbers and/or convertible data', () => {

@@ -2,12 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 
 // JS scripts
-import './js/basics';
+import { onClick } from './js/basics';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header" onClick={onClick}>
         <img src={logo} className="App-logo" alt="logo" />
         <p>Welcome to React, bro!</p>
         <a
