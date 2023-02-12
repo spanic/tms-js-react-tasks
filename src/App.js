@@ -1,13 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 
-// JS scripts
-import './js/basics';
+/**
+ * Use this way to add imports from /src/js to be used inside React components
+ */
+import { onClick } from './js/lesson_1/basics';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header" onClick={onClick}>
         <img src={logo} className="App-logo" alt="logo" />
         <p>Welcome to React, bro!</p>
         <a
