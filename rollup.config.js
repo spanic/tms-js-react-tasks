@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  input: 'src/js/index.js',
+  input: 'src/js/public.js',
   output: {
-    file: 'public/bundle.js',
+    dir: 'public',
     format: 'iife',
     name: 'my',
-  }
+  },
 };

@@ -12,9 +12,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "npm run build:js && react-scripts start",
+    "start": "npm run build:js -- --watch & react-scripts start",
     "build": "npm run build:js && react-scripts build",
-    "build:js": "rollup -c",
+    "build:js": "rollup -c --bundleConfigAsCjs",
     "serve": "npm run build && serve -s build -l 4000",
     "test": "react-scripts test --verbose",
     "test:nowatch": "npm run test -- --watchAll=false",
@@ -40,7 +40,7 @@
     "eslint-config-prettier": "^8.6.0",
     "husky": "^8.0.3",
     "prettier": "^2.8.4",
-    "rollup": "^2.79.1",
+    "rollup": "^3.15.0",
     "serve": "^14.2.0"
   }
 }

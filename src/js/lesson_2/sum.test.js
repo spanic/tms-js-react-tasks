@@ -1,4 +1,4 @@
-import { sum, factorial } from './basics';
+import { sum } from './sum';
 
 describe('Validating sum() function', () => {
   test('works fine with numbers and/or convertible data', () => {
@@ -23,13 +23,5 @@ describe('Validating sum() function', () => {
         /^argument '.*' cannot be converted to number, please check the inputs$/i
       )
     );
-  });
-});
-
-describe('Validating fibonacci() function', () => {
-  test('calculates fibonacci', () => {
-    expect(factorial(5)).toBe(120);
-    expect(factorial(10)).toBe(3_628_800);
-    expect(factorial(25)).toBe(15_511_210_043_330_985_984_000_000);
   });
 });
