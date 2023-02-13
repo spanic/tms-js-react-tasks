@@ -31,4 +31,4 @@ jobs:
         cache: 'npm'
     - run: npm pkg delete scripts.prepare
     - run: npm ci --omit-dev
-    - run: npm test
+    - run: npm run test:nowatch
