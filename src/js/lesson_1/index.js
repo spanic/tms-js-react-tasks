@@ -3,7 +3,7 @@
  * This code will be executed as soon as the bundle is loaded
  */
 
-import { factorial } from './basics';
+import { greetAndConfirm, factorial } from './homework';
 
-console.log('Welcome to our first lesson!');
-console.log(factorial(3));
+greetAndConfirm();
+factorial(5);

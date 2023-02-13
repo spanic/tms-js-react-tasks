@@ -16,7 +16,7 @@
     "build": "npm run build:js && react-scripts build",
     "build:js": "rollup -c --bundleConfigAsCjs",
     "serve": "npm run build && serve -s build -l 4000",
-    "test": "react-scripts test --verbose",
+    "test": "react-scripts test --verbose --watchAll",
     "test:nowatch": "npm run test -- --watchAll=false",
     "lint": "eslint --ext .js --max-warnings 0 --ignore-path .gitignore .",
     "lint:fix": "npm run lint -- --fix",
@@ -37,10 +37,12 @@
     ]
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^24.0.1",
     "eslint-config-prettier": "^8.6.0",
     "husky": "^8.0.3",
     "prettier": "^2.8.4",
     "rollup": "^3.15.0",
+    "rollup-plugin-cleanup": "^3.2.1",
     "serve": "^14.2.0"
   }
 }

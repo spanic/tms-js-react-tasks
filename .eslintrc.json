@@ -6,8 +6,17 @@
         2
     ],
     "quotes": [
-        "error",
-        "single"
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "no-restricted-globals": [
+      "off",
+      {
+          "name": "confirm"
+      }
     ]
   }
 }

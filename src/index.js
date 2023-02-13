@@ -12,7 +12,7 @@ root.render(
 );
 
 /**
- * Add scripts as cjs modules to be included inside the main JS bundle
+ * Add scripts as cjs modules via require() to include them inside the main JS bundle
  */
 require('./js/lesson_1');
 

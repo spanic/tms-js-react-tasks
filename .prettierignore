@@ -3,3 +3,5 @@
 
 # ... except src directory
 !/**/src
+# ... and some extra files
+!/*.js

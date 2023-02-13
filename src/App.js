@@ -4,7 +4,7 @@ import './App.css';
 /**
  * Use this way to add imports from /src/js to be used inside React components
  */
-import { onClick } from './js/lesson_1/basics';
+import { onClick } from './js/lesson_1/homework';
 
 function App() {
   return (
