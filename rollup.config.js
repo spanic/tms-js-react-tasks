@@ -8,7 +8,7 @@ export default {
     dir: 'public',
     format: 'iife',
     name: 'my',
-    strict: false,
+    // strict: false,
   },
   plugins: [commonjs({ transformMixedEsModules: true }), cleanup()],
 };

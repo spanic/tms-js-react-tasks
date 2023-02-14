@@ -5,7 +5,7 @@
  */
 
 console.log(`⌛ Getting variable's value before it's declaration: a = ${a}`);
-var a;
+var a = 0;
 
 for (var i = 0; i < 10; i++) {}
 console.log(`🙊 Getting counter value after loop is finished: i = ${i}`);

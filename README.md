@@ -2,6 +2,20 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Quick start
+1. Install [Node.js](https://nodejs.org/en/download/)
+2. Fork this repository
+3. Open it in your IDE
+4. Run `npm install` in terminal
+5. Create a new Git branch from `master`
+6. Run `npm run test`
+7. Check the failed tests, implement the requested functions
+8. Press `q` when all the tests are green (passed) or yellow (skipped)
+9. Execute `git add .`, `git commit -m "{your_commit_message}"`, `git push origin {your_branch_name}` - or use IDE's GUI for the same
+10. Check the Github Actions tab - your last CI job execution should be green
+11. Create a pull-request to this repository
+
+
 ## Available Scripts
 
 ### `npm run start`
