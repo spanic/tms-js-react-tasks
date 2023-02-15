@@ -11,6 +11,7 @@ on:
     branches: [ "master" ]
     paths-ignore:
       - "*.md"
+  workflow_dispatch:
 
 jobs:
   build:
@@ -30,5 +31,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm pkg delete scripts.prepare
-    - run: npm ci --omit-dev
+    - run: npm ci --omit=dev
     - run: npm run test:nowatch
