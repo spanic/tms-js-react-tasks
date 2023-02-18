@@ -15,7 +15,21 @@
  * @return {number} the factorial value
  */
 function factorial(number) {
-  // ...
+  if (isNaN(number)) {
+    throw new Error(`Argument '${number}' cannot be converted to number, please check the inputs`);
+  }
+  else if (number < 0) {
+    throw new Error(`Value '${number}' is less than 0, expected to be positive`);
+  }
+  else if (number % 1 !== 0) {
+    throw new Error(`Value '${number}' is float, expected integer`);
+  }
+  else if (number === 0 || number === 1) {
+    return 1;
+  }
+  else {
+    return (number * factorial(number - 1));
+  }
 }
 
 /**
@@ -30,9 +44,27 @@ function factorial(number) {
  * @return {string} entered name
  */
 function greetAndConfirm() {
-  // ...
+
+  let conf;
+  let result = prompt('Enter your name:');
+  
+  if (result === '') {
+    throw new Error('Provided empty name');
+  }
+  else if (result !== null) {
+    conf = confirm(`Is your name ${result}?`);
+  }
+
+  while(conf === false || result === null){
+    conf = undefined;
+    greetAndConfirm();
+  }
+  
+  return result;
+
 }
 
-function onClick() {}
+
+function onClick() { }
 
 export { factorial, onClick, greetAndConfirm };
