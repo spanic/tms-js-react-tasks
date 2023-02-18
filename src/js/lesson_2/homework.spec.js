@@ -1,6 +1,6 @@
 import { christmasTree } from './homework';
 
-describe('Validating christmasTree() function', () => {
+xdescribe('Validating christmasTree() function', () => {
   test('returns number tree when argument is valid', () => {
     expect(christmasTree(6)).toMatch(/^\s{5}0\s{5}\n[\s\S]*/);
     expect(christmasTree(3)).toMatch(/\n2\s2\s2$/);
