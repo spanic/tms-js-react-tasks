@@ -16,17 +16,21 @@
  */
 function factorial(number) {
   if (isNaN(number)) {
-    throw new Error(`Argument '${number}' cannot be converted to number, please check the inputs`);
-  }else if (number < 0) {
-    throw new Error(`Value '${number}' is less than 0, expected to be positive`);
-  } else if(number % 1 !==0){
+    throw new Error(
+      `Argument '${number}' cannot be converted to number, please check the inputs`
+    );
+  } else if (number < 0) {
+    throw new Error(
+      `Value '${number}' is less than 0, expected to be positive`
+    );
+  } else if (number % 1 !== 0) {
     throw new Error(`Value '${number}' is float, expected integer`);
-  } else if(number ===0){
+  } else if (number === 0) {
     return 1;
   } else {
     let fact = 1;
-    for(let i=1;i<=number;i++){
-      fact*=i;
+    for (let i = 1; i <= number; i++) {
+      fact *= i;
     }
     return fact;
   }
@@ -44,13 +48,13 @@ function factorial(number) {
  */
 function greetAndConfirm() {
   let checking;
-  do{
+  do {
     var name = prompt('Enter your name');
-    if(name === ''){
+    if (name === '') {
       throw new Error('Provided empty name');
     }
     checking = confirm('Are you sure');
-  }while (!checking);
+  } while (!checking);
   return name;
 }
 
