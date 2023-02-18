@@ -12,7 +12,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "npm run build:js -- --watch & react-scripts start",
+    "start": "concurrently --names \"JS,REACT\" -c \"bgYellow.bold,bgBlue.bold\" \"npm run build:js -- --watch\" \"react-scripts start\"",
     "build": "npm run build:js && react-scripts build",
     "build:js": "rollup -c --bundleConfigAsCjs",
     "serve": "npm run build && serve -s build -l 4000",
@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
+    "concurrently": "^7.6.0",
     "eslint-config-prettier": "^8.6.0",
     "husky": "^8.0.3",
     "prettier": "^2.8.4",
