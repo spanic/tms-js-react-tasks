@@ -16,15 +16,17 @@
  */
 function factorial(number) {
   if (isNaN(number)) {
-    throw new Error(`Argument '${number}' cannot be converted to number, please check the inputs`);
+    throw new Error(
+      `Argument '${number}' cannot be converted to number, please check the inputs`
+    );
   }
 
   const num = Number(number);
-  
+
   if (num < 0) {
     throw new Error(`Value '${num}' is less than 0, expected to be positive`);
   }
-  
+
   if (!Number.isInteger(num)) {
     throw new Error(`Value '${num}' is float, expected integer`);
   }
