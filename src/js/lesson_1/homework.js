@@ -59,13 +59,12 @@ function greetAndConfirm() {
     confirmed = confirm(`Is "${name}" your name?`);
     if (!confirmed) {
       name = prompt('Please enter your name again:');
-      while (name === '') {
-        throw new Error('Provided empty name');
-      }
+     
     }
   }
   return name;
 }
+
 
 function onClick() {}
 
