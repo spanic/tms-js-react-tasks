@@ -16,20 +16,20 @@
  */
 function factorial(number) {
   number = Number(number);
-  if (isNaN(number)) {
-    throw new Error(`Argument '${number}' cannot be converted to number, please check the inputs`);
-  }
-  else if (number < 0) {
-    throw new Error(`Value '${number}' is less than 0, expected to be positive`);
-  }
-  else if ( number % 1 !== 0 ) {
+  if (Number.isNaN(number)) {
+    throw new Error(
+      `Argument '${number}' cannot be converted to number, please check the inputs`
+    );
+  } else if (number < 0) {
+    throw new Error(
+      `Value '${number}' is less than 0, expected to be positive`
+    );
+  } else if (number % 1 !== 0) {               
     throw new Error(`Value '${number}' is float, expected integer`);
-  }
-  else if (number === 0 || number === 1) {
+  } else if (number === 0 || number === 1) {
     return 1;
-  }
-  else {
-    return (number * factorial(number - 1));
+  } else {
+    return number * factorial(number - 1);
   }
 }
 
@@ -48,13 +48,11 @@ function factorial(number) {
 let isConf;
 let string;
 function greetAndConfirm() {
-
   string = prompt('Enter your name:');
 
   if (!string) {
-    throw new Error ('Provided empty name');
-  }
-  else if (string !== null) {
+    throw new Error('Provided empty name');
+  } else if (string !== null) {
     isConf = confirm(`Is your name ${string}?`);
   }
 
@@ -63,9 +61,8 @@ function greetAndConfirm() {
   }
 
   return string;
-
 }
 
-function onClick() { }
+function onClick() {}
 
 export { factorial, onClick, greetAndConfirm };

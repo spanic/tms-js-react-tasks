@@ -18,7 +18,6 @@
  * 3 3 3 3
  * @param {number} height total number of rows (i. e. height of the tree)
  */
-function christmasTree(height) {
-}
+function christmasTree(height) {}
 
 export { christmasTree };
