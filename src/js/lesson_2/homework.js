@@ -18,8 +18,7 @@
  * 3 3 3 3
  * @param {number} height total number of rows (i. e. height of the tree)
  */
-function christmasTree(height) {
-}
+function christmasTree(height) {}
 
 /**
  * Функция должна возвращать копию исходного массива, содержащего только числа, отсортированную в порядке убывания (от большего к меньшему).
