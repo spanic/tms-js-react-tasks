@@ -13,3 +13,8 @@ export { onClick };
 // require('./lesson_1/useStrictExamples');
 // require('./lesson_1/varLetConstExample');
 // require('./lesson_1/typeCoercionExamples');
+
+/**
+ * Lesson 3
+ */
+// require('./lesson_3/functionsExamples');
