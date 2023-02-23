@@ -14,9 +14,20 @@
  * @param {number} number - value to calculate factorial for
  * @return {number} the factorial value
  */
+
 function factorial(number) {
-  // ...
+  if (isNaN(number)){
+    throw new Error(`Argument '${number}' cannot be converted to number, please check the inputs`);
+  } else if (number < 0){
+    throw new Error(`Value '${number}' is less than 0, expected to be positive`);
+  } else if (number % 1 !== 0){
+    throw new Error(`Value '${number}' is float, expected integer`);
+  } else  if ((number === 0) || (number === 1))
+    return 1;
+  else 
+    return (number * factorial(number - 1));
 }
+
 
 /**
  * Функция должна возвращать строку (имя), введенное пользователем в окно ``` prompt() ```.
@@ -29,10 +40,24 @@ function factorial(number) {
  *
  * @return {string} entered name
  */
+
 function greetAndConfirm() {
-  // ...
+  let string = prompt('Enter your name')
+  if(string === null){
+    alert('Вы отказались от ввода')
+  }
+  else if (string ==='') { 
+    throw new Error('Provided empty name');               
+  }
+  else if(string!==null){                                
+    if (confirm(`Is your name '${string}'`) === false){
+      greetAndConfirm ()
+    }
+    return(string)
+                             
+  }    
 }
-
-function onClick() {}
-
+function onClick() {
+  greetAndConfirm()
+}
 export { factorial, onClick, greetAndConfirm };
