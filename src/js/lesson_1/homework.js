@@ -24,7 +24,7 @@ function factorial(number) {
     throw new Error(
       `Value '${number}' is less than 0, expected to be positive`
     );
-  } else if (number % 1 !== 0) {               
+  } else if (number % 1 !== 0) {
     throw new Error(`Value '${number}' is float, expected integer`);
   } else if (number === 0 || number === 1) {
     return 1;
