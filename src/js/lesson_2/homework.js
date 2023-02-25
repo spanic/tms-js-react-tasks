@@ -20,7 +20,9 @@
  */
 function christmasTree(height) {
   if (!Number.isInteger(height) || height < 1 || height > 10) {
-    throw new Error(`Argument '${height}' is invalid, expected positive integer from 1 to 10`);
+    throw new Error(
+      `Argument '${height}' is invalid, expected positive integer from 1 to 10`
+    );
   }
 
   let tree = '';

@@ -50,21 +50,19 @@ function factorial(number) {
  * @return {string} entered name
  */
 function greetAndConfirm() {
-  let name = prompt('Please enter your name:');
-  while (name === '') {
-    throw new Error('Provided empty name');
-  }
-  let confirmed = false;
-  while (!confirmed) {
-    confirmed = confirm(`Is "${name}" your name?`);
-    if (!confirmed) {
-      name = prompt('Please enter your name again:');
-     
+  while (true) {
+    const name = prompt('Please enter your name:');
+    if (!name) {
+      throw new Error('Provided empty name');
+    }
+    const confirmed = confirm(`Is "${name}" your name?`);
+    if (confirmed) {
+      return name;
+    } else {
+      continue;
     }
   }
-  return name;
 }
-
 
 function onClick() {}
 
