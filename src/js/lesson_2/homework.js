@@ -19,7 +19,40 @@
  * @param {number} height total number of rows (i. e. height of the tree)
  */
 function christmasTree(height) {
-  // ...
+  if (!Number.isInteger(height) || height < 1 || height > 10) {
+    throw new Error(
+      `Argument '${height}' is invalid, expected positive integer from 1 to 10`
+    );
+  }
+  function getIndexesInRow(row, width) {
+    const indexFirstNumber = Math.floor(width / 2) - row;
+    let indexes = [indexFirstNumber];
+    if (row === 0) {
+      return indexes;
+    }
+    let value = indexFirstNumber;
+    for (let i = 1; i <= row; i++) {
+      value += 2;
+      indexes.push(value);
+    }
+    return indexes;
+  }
+  const width = height * 2 - 1;
+  let row = '';
+  for (let i = 0; i < height; i++) {
+    const indexesOfNumbersInRow = getIndexesInRow(i, width);
+    for (let j = 0; j < width; j++) {
+      if (indexesOfNumbersInRow.indexOf(j) === -1) {
+        row += ' ';
+      } else {
+        row += `${i}`;
+      }
+    }
+    if (i !== height - 1) {
+      row += '\n';
+    }
+  }
+  return row;
 }
 
 /**
