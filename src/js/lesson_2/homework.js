@@ -46,7 +46,12 @@ function christmasTree(height) {
  * @returns {array} copy of the input array, sorted in reverse order
  */
 function reverseSort(array) {
-  // ...
+  if (!Array.isArray(array)) {
+    throw new Error(
+      `Argument '${array}' is not an array, expected to be an array of numbers`
+    );
+  }
+  const copyArray = [...array];
 
   function checkIsNumber(value) {
     if (typeof value !== 'number' || Number.isNaN(value)) {
@@ -55,6 +60,17 @@ function reverseSort(array) {
       );
     }
   }
+  for (let i = 0; i < copyArray.length; i++) {
+    checkIsNumber(copyArray[i]);
+    for (let j = i + 1; j < copyArray.length; j++) {
+      if (copyArray[i] < copyArray[j]) {
+        let temp = copyArray[i];
+        copyArray[i] = copyArray[j];
+        copyArray[j] = temp;
+      }
+    }
+  }
+  return copyArray;
 }
 
 export { christmasTree, reverseSort };
