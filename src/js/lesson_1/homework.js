@@ -19,22 +19,23 @@ function factorial(number) {
     throw new Error(
       `Argument '${number}' cannot be converted to number, please check the inputs`
     );
-  } else if (number < 0) {
+  }
+  const nummber = Number(number);
+  if (nummber < 0) {
     throw new Error(
-      `Value '${number}' is less than 0, expected to be positive`
+      `Value '${nummber}' is less than 0, expected to be positive`
     );
-  } else if (number % 1 !== 0) {
-    throw new Error(`Value '${number}' is float, expected integer`);
-  } else if (number === 0) {
+  }
+  if (!Number.isInteger(nummber)) {
+    throw new Error(`Value '${nummber}' is float, expected integer`);
+  }
+  if (nummber === 0) {
     return 1;
   } else {
-    let fact = 1;
-    for (let i = 1; i <= number; i++) {
-      fact *= i;
-    }
-    return fact;
+    return nummber * factorial(nummber - 1);
   }
 }
+
 /**
  * Функция должна возвращать строку (имя), введенное пользователем в окно ``` prompt() ```.
  *
@@ -47,15 +48,18 @@ function factorial(number) {
  * @return {string} entered name
  */
 function greetAndConfirm() {
-  let checking;
-  do {
-    var name = prompt('Enter your name');
-    if (name === '') {
+  while (true) {
+    const name = prompt('Please enter your name:');
+    if (!name) {
       throw new Error('Provided empty name');
     }
-    checking = confirm('Are you sure');
-  } while (!checking);
-  return name;
+    const confirmed = confirm(`Is "${name}" your name?`);
+    if (confirmed) {
+      return name;
+    } else {
+      continue;
+    }
+  }
 }
 
 function onClick() {}

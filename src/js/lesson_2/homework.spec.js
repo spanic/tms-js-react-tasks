@@ -1,6 +1,6 @@
 import { christmasTree, reverseSort } from './homework';
 
-xdescribe('Validating christmasTree() function', () => {
+describe('Validating christmasTree() function', () => {
   test('returns number tree when argument is valid', () => {
     expect(christmasTree(6)).toMatch(/^\s{5}0\s{5}\n[\s\S]*/);
     expect(christmasTree(3)).toMatch(/\n2\s2\s2$/);
@@ -30,7 +30,7 @@ xdescribe('Validating christmasTree() function', () => {
   });
 });
 
-describe('Validating reverseSort() function:', () => {
+xdescribe('Validating reverseSort() function:', () => {
   beforeAll(() => {
     let sortSpyFn = jest.spyOn(Array.prototype, 'sort');
     expect(sortSpyFn).not.toBeCalled();
