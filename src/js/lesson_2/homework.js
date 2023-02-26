@@ -170,17 +170,35 @@ function christmasTree(height) {
  * @param {array} array array of numbers
  * @returns {array} copy of the input array, sorted in reverse order
  */
-// function reverseSort(array) {
-//   // ...
+function reverseSort(array) {
+  if (Array.isArray(array)) {
+    throw new Error(
+      `Argument '${array}' is not an array, expected to be an array of numbers`
+    );
+  }
+  // if (array.every(element => {
+  //   return typeof element !== 'number';
+  // })){
+  //   throw new Error(
+  //     `Element '${array}' cannot be coerced to number / is NaN, expected to be a number`
+  //   );
+  // }
+  function checkIsNumber(value) {
+    if (typeof value !== 'number' || Number.isNaN(value)) {
+      throw new Error(
+        `Element '${value}' cannot be coerced to number / is NaN, expected to be a number`
+      );
+    }
+  }
+  if (checkIsNumber(array) === true) {
+    throw new Error(
+      `Element '${array}' cannot be coerced to number / is NaN, expected to be a number`
+    );
+  }
 
-//   function checkIsNumber(value) {
-//     if (typeof value !== 'number' || Number.isNaN(value)) {
-//       throw new Error(
-//         `Element '${value}' cannot be coerced to number / is NaN, expected to be a number`
-//       );
-//     }
-//   }
-// }
+  // let numArrReversed = array.map(array.pop, [...array]);
+  const copy = [...array].map(array.pop, array);
+  return copy;
+}
 
-// export { christmasTree, reverseSort };
-export { christmasTree };
+export { christmasTree, reverseSort };
