@@ -27,12 +27,26 @@ function christmasTree(height) {
 
   let tree = '';
 
-  for (let i = 0; i < height; i++) {
-    const spaces = ' '.repeat(height - i - 1);
-    const nums = `${i} `.repeat(i + 1);
-    tree += spaces + nums.trim() + '\n';
-  }
+  const rowLength = 2 * height - 1;
 
+  for (let i = 0; i < height; i++) {
+    const firstNumberPosition = (rowLength -1) / 2 - i;
+    for (let j = 0; j < rowLength; j++) {
+      if (
+        j >= firstNumberPosition &&
+        j % 2 === firstNumberPosition % 2 &&
+        j < rowLength - firstNumberPosition
+      ) {
+        tree += i;
+      } else {
+        tree += ' ';
+      }
+    }
+    if (i < height - 1) {
+      tree += '\n';
+    }
+    
+  }
   return tree;
 }
 
@@ -60,7 +74,47 @@ function christmasTree(height) {
  * @returns {array} copy of the input array, sorted in reverse order
  */
 function reverseSort(array) {
-  // ...
+  // Проверяем, что аргумент является массивом
+  if (!Array.isArray(array)) {
+    throw new Error(
+      `Argument '${array}' is not an array, expected to be an array of numbers`
+    );
+  }
+
+  // Создаем копию исходного массива и проверяем, что каждый элемент является числом
+  const resultArray = array.filter((element) => {
+    if (typeof element !== 'number' || isNaN(element)) {
+      throw new Error(
+        `Element '${element}' cannot be coerced to number / is NaN, expected to be a number`
+      );
+    }
+    return true;
+  });
+
+  // Сортируем копию массива методом выбора
+  for (let i = 0; i < resultArray.length; i++) {
+    let maxIndex = i;
+    for (let j = i + 1; j < resultArray.length; j++) {
+      if (resultArray[j] > resultArray[maxIndex]) {
+        maxIndex = j;
+      }
+    }
+    if (maxIndex !== i) {
+      const temp = resultArray[i];
+      resultArray[i] = resultArray[maxIndex];
+      resultArray[maxIndex] = temp;
+    }
+  }
+
+  return resultArray;
+
+  //   function checkIsNumber(value) {
+  //     if (typeof value !== 'number' || Number.isNaN(value)) {
+  //       throw new Error(
+  //         `Element '${value}' cannot be coerced to number / is NaN, expected to be a number`
+  //       );
+  //     }
+  //   }
 }
 
 export { christmasTree, reverseSort };
