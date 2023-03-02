@@ -5,3 +5,7 @@
 !/**/src
 # ... and some extra files
 !/*.js
+!/*.json
+
+/**/data
+/package-lock.json
