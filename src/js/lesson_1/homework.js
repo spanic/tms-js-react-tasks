@@ -42,20 +42,30 @@ function factorial(number) {
  */
 
 function greetAndConfirm() {
-  let string = prompt('Enter your name')
-  if(string === null){
-    alert('Вы отказались от ввода')
-  }
-  else if (string ==='') { 
-    throw new Error('Provided empty name');               
-  }
-  else if(string!==null){                                
-    if (confirm(`Is your name '${string}'`) === false){
-      greetAndConfirm ()
-    }
-    return(string)
+  // let string = prompt('Enter your name')
+  // if(string === null){
+  //   alert('Вы отказались от ввода')
+  // }
+  // else if (string ==='') { 
+  //   throw new Error('Provided empty name');               
+  // }
+  // else if(string!==null){                                
+  //   if (confirm(`Is your name '${string}'`) === false){
+  //     greetAndConfirm ()
+  //   }
+  //   return(string)
                              
-  }    
+  // }    
+  do {
+    const name = prompt('Enter your name');
+    if(!name) {
+      throw new Error('Provided empty name');
+    }
+    const result = confirm(`Is your name '${name}?`);
+    if (result) {
+      return name;
+    } 
+  } while (true);
 }
 function onClick() {
   greetAndConfirm()
