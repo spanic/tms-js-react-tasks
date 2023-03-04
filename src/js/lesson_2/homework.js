@@ -30,7 +30,7 @@ function christmasTree(height) {
   const rowLength = 2 * height - 1;
 
   for (let i = 0; i < height; i++) {
-    const firstNumberPosition = (rowLength -1) / 2 - i;
+    const firstNumberPosition = (rowLength - 1) / 2 - i;
     for (let j = 0; j < rowLength; j++) {
       if (
         j >= firstNumberPosition &&
@@ -45,7 +45,6 @@ function christmasTree(height) {
     if (i < height - 1) {
       tree += '\n';
     }
-    
   }
   return tree;
 }
