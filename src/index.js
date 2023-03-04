@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import TaskList from './components/task-list/TaskList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <>
+    <TaskList />
     <App />
-  </React.StrictMode>
+  </>
 );
 
 /**
@@ -18,6 +20,7 @@ root.render(
 // require('./js/lesson_2');
 // require('./js/lesson_3');
 // require('./js/lesson_4');
+// require('./js/lesson_5');
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
