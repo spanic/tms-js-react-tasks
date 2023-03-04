@@ -1,4 +1,5 @@
 import movies from '../data/moviesTestData';
+import moviesGroupedByGenre from '../data/moviesGroupedByGenre';
 
 /**
  * Функция должна возвращать топ-N фильмов с самым большим бюджетом. Если фильмов с одинаковым бюджетом несколько, они все должны попасть в результат выполнения функции.
@@ -18,7 +19,11 @@ import movies from '../data/moviesTestData';
  * @returns array of movies ordered by Production_Budget desc (массив фильмов, отсортированных по значению Production_Budget в порядке убывания (от большего к меньшему))
  */
 function getMaxProductionBudgetMovies(amount) {
-  // ...
+  movies.sort((a, b) => b.Production_Budget - a.Production_Budget);
+
+  const sortedMovies = movies.slice(0, amount);
+
+  return sortedMovies;
 }
 
 /**
@@ -30,7 +35,17 @@ function getMaxProductionBudgetMovies(amount) {
  * @returns map ``` {Major_Genre: [movies]} ``` where movies are sorted by ``` IMDB_Rating ``` and ``` Rotten_Tomatoes_Rating ``` desc
  */
 function getMoviesGroupedByGenres() {
-  // ...
+  console.log(moviesGroupedByGenre);
+
+  // for (let key in moviesGroupedByGenre) {
+  // console.log( 'Ключ: ' + key + ' значение: ' + moviesGroupedByGenre[key] );
+  // }
+  // console.log(moviesGroupedByGenre.Comedy[10].IMDB_Rating);
+  // moviesGroupedByGenre.sort((a, b) =>
+  //   (b.IMDB_Rating > a.IMDB_Rating) - (a.IMDB_Rating > b.IMDB_Rating)
+  //   || (b.Rotten_Tomatoes_Rating > a.Rotten_Tomatoes_Rating) - (a.Rotten_Tomatoes_Rating > b.Rotten_Tomatoes_Rating));
+  // const sotrMovies = [...moviesGroupedByGenre.Comedy]
+  // console.log(sotrMovies);
 }
 
 export { getMaxProductionBudgetMovies, getMoviesGroupedByGenres };

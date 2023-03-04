@@ -27,19 +27,21 @@ function christmasTree(height) {
     height < 1 ||
     height > 10
   ) {
-    throw new Error(`Argument '${height}' is invalid, expected positive integer from 1 to 10`);
+    throw new Error(
+      `Argument '${height}' is invalid, expected positive integer from 1 to 10`
+    );
   }
   for (let i = 0; i < height; i++) {
     tree += ' '.repeat(height - 1 - i) + `${i}`;
     for (let k = 1; k <= i; k++) {
       tree += ` ${i}`;
-    }   
+    }
     tree += ' '.repeat(height - 1 - i);
-    if (i < height -1){
+    if (i < height - 1) {
       tree += '\n';
-    };
+    }
   }
-  
+
   return tree;
 }
 
@@ -66,18 +68,39 @@ function christmasTree(height) {
  * @param {array} array array of numbers
  * @returns {array} copy of the input array, sorted in reverse order
  */
+
 function reverseSort(array) {
-  if (!Array.isArray(array)){
-    throw new Error(`Argument '${array}' is not an array, expected to be an array of numbers`);
+
+  if (!Array.isArray(array)) {
+    throw new Error(
+      `Argument '${array}' is not an array, expected to be an array of numbers`
+    );
   }
 
-  function checkIsNumber(value) {
-    if (typeof value !== 'number' || Number.isNaN(value)) {
-      throw new Error(
-        `Element '${value}' cannot be coerced to number / is NaN, expected to be a number`
-      );
-    }
+  for (let i = 0; i < array.length; i++) {
+    checkIsNumber(array[i]);
+  }
+
+  const copy = [...array];
+  
+  let a =[];
+
+  for (; array.length;) {
+    a.push(array.splice(array.indexOf(Math.max(...a)), 1)[0])
+  }
+
+  
+
+  return a;
+}
+
+function checkIsNumber(value) {
+  if (typeof value !== 'number' || Number.isNaN(value)) {
+    throw new Error(
+      `Element '${value}' cannot be coerced to number / is NaN, expected to be a number`
+    );
   }
 }
+
 
 export { christmasTree, reverseSort };

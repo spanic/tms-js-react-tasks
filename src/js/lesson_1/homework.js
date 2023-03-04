@@ -52,9 +52,9 @@ function greetAndConfirm() {
 
   if (!string) {
     throw new Error('Provided empty name');
-  } else if (string !== null) {
-    isConf = confirm(`Is your name ${string}?`);
   }
+
+  isConf = confirm(`Is your name ${string}?`);
 
   if (isConf === false) {
     greetAndConfirm();

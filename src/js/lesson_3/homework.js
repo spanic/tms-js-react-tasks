@@ -54,8 +54,6 @@ function compare(object, getPropToCompareFn, compareFn) {
   return compareFn(getPropToCompareFn, object);
 }
 
-
-
 /**
  * Эта функция должна реализовывать логику сравнения значений id и возвращать искомый результат
  * @param {number} firstValue initial object's id (значение id исходного объекта)
@@ -64,11 +62,9 @@ function compare(object, getPropToCompareFn, compareFn) {
 function compareIds(firstValue, secondValue) {
   if (firstValue > secondValue) {
     return `Object 1 is greater than Object 2: id ${firstValue} > ${secondValue}`;
-  }
-  else if (firstValue === secondValue) {
+  } else if (firstValue === secondValue) {
     return `Object 1 is equal to Object 2: id ${firstValue} == ${secondValue}`;
-  }
-  else if (firstValue < secondValue) {
+  } else if (firstValue < secondValue) {
     return `Object 1 is less than Object 2: id ${firstValue} < ${secondValue}`;
   }
 }
@@ -81,11 +77,9 @@ function compareIds(firstValue, secondValue) {
 function compareNameLengths(firstValue, secondValue) {
   if (firstValue.length > secondValue.length) {
     return `Object 1 is less than Object 2: name length ${firstValue.length} > ${secondValue.length}`;
-  }
-  else if (firstValue.length === secondValue.length) {
+  } else if (firstValue.length === secondValue.length) {
     return `Object 1 is equal to Object 2: name length ${firstValue.length} == ${secondValue.length}`;
-  }
-  else if (firstValue.length < secondValue.length) {
+  } else if (firstValue.length < secondValue.length) {
     return `Object 1 is greater than Object 2: name length ${firstValue.length} < ${secondValue.length}`;
   }
 }
