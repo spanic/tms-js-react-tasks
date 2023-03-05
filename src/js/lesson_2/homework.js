@@ -18,8 +18,38 @@
  * 3 3 3 3
  * @param {number} height total number of rows (i. e. height of the tree)
  */
+
 function christmasTree(height) {
-  // ...
+
+  let tree = '';
+
+  if (
+    typeof height !== 'number' ||
+    !Number.isInteger(height) ||
+    height < 1 ||
+    height > 10
+  ) {
+    throw new Error(
+      `Argument '${height}' is invalid, expected positive integer from 1 to 10`
+    );
+  }
+
+  for (let i = 0; i < height; i++) {
+
+    tree += ' '.repeat(height - 1 - i) + `${i}`;
+
+    for (let k = 1; k <= i; k++) {
+      tree += ` ${i}`;
+    }
+
+    tree += ' '.repeat(height - 1 - i);
+
+    if (i < height - 1) {
+      tree += '\n';
+    }
+  }
+
+  return tree;
 }
 
 /**
@@ -45,15 +75,47 @@ function christmasTree(height) {
  * @param {array} array array of numbers
  * @returns {array} copy of the input array, sorted in reverse order
  */
+
 function reverseSort(array) {
-  // ...
-  // function checkIsNumber(value) {
-  //   if (typeof value !== 'number' || Number.isNaN(value)) {
-  //     throw new Error(
-  //       `Element '${value}' cannot be coerced to number / is NaN, expected to be a number`
-  //     );
-  //   }
-  // }
+
+  if (!Array.isArray(array)) {
+    throw new Error(
+      `Argument '${array}' is not an array, expected to be an array of numbers`
+    );
+  }
+
+  const copy = [...array];
+
+  let sort;
+
+  do {
+    sort = true;
+
+    for (let i = 0; i < copy.length; i++) {
+
+      checkIsNumber(copy[i]);
+
+      if (i === copy.length - 1) continue;
+
+      checkIsNumber(copy[i + 1]);
+
+      if (copy[i] < copy[i + 1]) {
+        [copy[i], copy[i + 1]] = [copy[i + 1], copy[i]];
+        sort = false;
+        break;
+      }
+    }
+  } while (!sort);
+
+  function checkIsNumber(value) {
+    if (typeof value !== 'number' || Number.isNaN(value)) {
+      throw new Error(
+        `Element '${value}' cannot be coerced to number / is NaN, expected to be a number`
+      );
+    }
+  }
+
+  return copy;
 }
 
 export { christmasTree, reverseSort };
