@@ -1,9 +1,9 @@
-function Request(method, url) {
-  this.method = method;
-  this.url = url;
-}
+// function Request(method, url) {
+//   this.method = method;
+//   this.url = url;
+// }
 
-const request = new Request('GET', 'www.onliner.by');
+// const request = new Request('GET', 'www.onliner.by');
 
 class RequestClass {
   _method;
@@ -45,7 +45,7 @@ class RequestClass {
   }
 }
 
-const requestInstance = new RequestClass('PATCH', 'www.onliner.by');
+// const requestInstance = new RequestClass('PATCH', 'www.onliner.by');
 
 class ExtendedRequestClass extends RequestClass {
   #port;

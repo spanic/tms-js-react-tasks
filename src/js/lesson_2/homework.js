@@ -47,14 +47,13 @@ function christmasTree(height) {
  */
 function reverseSort(array) {
   // ...
-
-  function checkIsNumber(value) {
-    if (typeof value !== 'number' || Number.isNaN(value)) {
-      throw new Error(
-        `Element '${value}' cannot be coerced to number / is NaN, expected to be a number`
-      );
-    }
-  }
+  // function checkIsNumber(value) {
+  //   if (typeof value !== 'number' || Number.isNaN(value)) {
+  //     throw new Error(
+  //       `Element '${value}' cannot be coerced to number / is NaN, expected to be a number`
+  //     );
+  //   }
+  // }
 }
 
 export { christmasTree, reverseSort };
