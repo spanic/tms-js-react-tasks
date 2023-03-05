@@ -1,6 +1,6 @@
 import { User } from './homework';
 
-xdescribe('Validating comparator functions', () => {
+describe('Validating comparator functions', () => {
   let first, second;
 
   beforeAll(() => {
