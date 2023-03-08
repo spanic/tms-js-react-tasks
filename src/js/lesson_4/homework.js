@@ -18,7 +18,12 @@
  * @returns array of movies ordered by Production_Budget desc (массив фильмов, отсортированных по значению Production_Budget в порядке убывания (от большего к меньшему))
  */
 function getMaxProductionBudgetMovies(amount) {
-  // ...
+  
+  movies.sort((a, b) => b.Production_Budget - a.Production_Budget);
+
+  const sortedMovies = movies.slice(0, amount);
+
+  return sortedMovies;
 }
 
 /**
@@ -30,7 +35,16 @@ function getMaxProductionBudgetMovies(amount) {
  * @returns map ``` {Major_Genre: [movies]} ``` where movies are sorted by ``` IMDB_Rating ``` and ``` Rotten_Tomatoes_Rating ``` desc
  */
 function getMoviesGroupedByGenres() {
-  // ...
+  console.log(movies[0].Major_Genre);
+
+  movies.sort((a, b) =>
+    (b.IMDB_Rating > a.IMDB_Rating) - (a.IMDB_Rating > b.IMDB_Rating)
+    || (b.Rotten_Tomatoes_Rating > a.Rotten_Tomatoes_Rating) - (a.Rotten_Tomatoes_Rating > b.Rotten_Tomatoes_Rating));
+
+  const sortedMovies = [...movies];
+
+  console.log(sortedMovies);
+
 }
 
 export { getMaxProductionBudgetMovies, getMoviesGroupedByGenres };
