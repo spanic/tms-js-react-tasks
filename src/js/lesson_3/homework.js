@@ -49,9 +49,9 @@ function compareById(object) {
  */
 function compareByNameLength(object) {
   return compare.call(
-    this, 
-    object, 
-    (object) => object.name?.length, 
+    this,
+    object,
+    (object) => object.name?.length,
     compareNameLengths
   );
 }
@@ -80,8 +80,6 @@ function compareIds(firstValue, secondValue) {
  * @param {number} firstValue initial object's name length (значение длины name исходного объекта)
  * @param {number} secondValue comparable object's name length (значение длины name сравниваемого объекта)
  */
-
-
 
 function compareNameLengths(firstValue, secondValue) {
   if (firstValue > secondValue) {

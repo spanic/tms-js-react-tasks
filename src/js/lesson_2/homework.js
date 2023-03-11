@@ -30,7 +30,7 @@ function christmasTree(height) {
   const rowLength = 2 * height - 1;
 
   for (let i = 0; i < height; i++) {
-    const firstNumberPosition = (rowLength -1) / 2 - i;
+    const firstNumberPosition = (rowLength - 1) / 2 - i;
     for (let j = 0; j < rowLength; j++) {
       if (
         j >= firstNumberPosition &&
@@ -45,7 +45,6 @@ function christmasTree(height) {
     if (i < height - 1) {
       tree += '\n';
     }
-    
   }
   return tree;
 }
@@ -80,41 +79,32 @@ function reverseSort(array) {
       `Argument '${array}' is not an array, expected to be an array of numbers`
     );
   }
+  const clone = [...array];
 
-  // Создаем копию исходного массива и проверяем, что каждый элемент является числом
-  const resultArray = array.filter((element) => {
-    if (typeof element !== 'number' || isNaN(element)) {
-      throw new Error(
-        `Element '${element}' cannot be coerced to number / is NaN, expected to be a number`
-      );
-    }
-    return true;
-  });
+  let sorted;
+  do {
+    sorted = true;
+    for (let i = 0; i < clone.length; i++) {
+      checkIsNumber(clone[i]);
+      if (i === clone.length - 1) continue;
+      checkIsNumber(clone[i + 1]);
 
-  // Сортируем копию массива методом выбора
-  for (let i = 0; i < resultArray.length; i++) {
-    let maxIndex = i;
-    for (let j = i + 1; j < resultArray.length; j++) {
-      if (resultArray[j] > resultArray[maxIndex]) {
-        maxIndex = j;
+      if (clone[i] < clone[i + 1]) {
+        [clone[i], clone[i + 1]] = [clone[i + 1], clone[i]];
+        sorted = false;
+        break;
       }
     }
-    if (maxIndex !== i) {
-      const temp = resultArray[i];
-      resultArray[i] = resultArray[maxIndex];
-      resultArray[maxIndex] = temp;
+  } while (!sorted);
+
+  function checkIsNumber(value) {
+    if (typeof value !== 'number' || Number.isNaN(value)) {
+      throw new Error(
+        `Element '${value}' cannot be coerced to number / is NaN, expected to be a number`
+      );
     }
   }
-
-  return resultArray;
-
-  //   function checkIsNumber(value) {
-  //     if (typeof value !== 'number' || Number.isNaN(value)) {
-  //       throw new Error(
-  //         `Element '${value}' cannot be coerced to number / is NaN, expected to be a number`
-  //       );
-  //     }
-  //   }
+  return clone;
 }
 
 export { christmasTree, reverseSort };
