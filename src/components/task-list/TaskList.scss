@@ -4,6 +4,7 @@ $davys-gray: #605f5eff;
 $cerulean: #247ba0ff;
 $platinum: #e2e2e2ff;
 $magestic-green: #2f712f;
+$light-dimmed-green: #b5d2b5;
 $control-color-black: #000000;
 $control-color-gray: #e8e8e8;
 
@@ -15,6 +16,8 @@ $control-box-shadow-hover-size: 0 0.33em 0 0;
 $control-default-translation: translateY(-0.2em);
 $control-hover-translation: translateY(-0.33em);
 $control-active-translation: translateY(0);
+
+$task-item-fade-in-fade-out-animation-length: 0.35s;
 
 @mixin control-default-shared-style {
   transition: transform 0.1s ease, box-shadow 0.1s ease;
@@ -60,7 +63,6 @@ $control-active-translation: translateY(0);
   &:focus-visible:active {
     transform: $control-active-translation;
     box-shadow: none;
-    border-color: $border-color;
   }
 
   &:active {
@@ -120,6 +122,12 @@ $control-active-translation: translateY(0);
         $border-color: $magestic-green,
         $focus-color: $magestic-green
       );
+
+      &:hover,
+      &:focus-visible,
+      &:active {
+        color: $magestic-green;
+      }
     }
   }
 
@@ -142,19 +150,33 @@ $control-active-translation: translateY(0);
   }
 
   &__item {
-    display: flex;
     column-gap: 2 * $step;
-    transition: ease-in-out 0.1s transform;
-    background-color: $platinum;
-    padding: 2 * $step;
     max-width: 900px;
 
     &:not(:last-child) {
       margin-bottom: 2 * $step;
     }
 
-    &:hover {
-      transform: scale(1.01);
+    &_animated {
+      @keyframes appear {
+        from {
+          transform: translateY(0.33em);
+          opacity: 0;
+        }
+      }
+
+      animation: appear $task-item-fade-in-fade-out-animation-length ease;
+    }
+
+    &_animated-remove {
+      @keyframes fadeOut {
+        to {
+          transform: translateY(-0.33em);
+          opacity: 0;
+        }
+      }
+
+      animation: fadeOut $task-item-fade-in-fade-out-animation-length ease;
     }
   }
 
@@ -163,10 +185,32 @@ $control-active-translation: translateY(0);
   }
 
   &-item {
+    display: flex;
+    align-items: center;
+    transition: transform ease 0.1s;
+    background-color: $platinum;
+    padding: 2 * $step;
+    width: 100%;
+
+    &:hover {
+      transform: scale(1.01);
+    }
+
     &__chevron {
+      flex-shrink: 0;
       background: url('./assets/chevron-right.svg') no-repeat center;
       background-size: 100%;
-      width: 90px;
+      width: 40px;
+      height: 40px;
+    }
+
+    &__text {
+      flex-grow: 1;
+      word-break: break-word;
+
+      &_completed {
+        text-decoration: line-through;
+      }
     }
 
     &__controls {
@@ -179,6 +223,11 @@ $control-active-translation: translateY(0);
 
     &__created-date {
       white-space: nowrap;
+    }
+
+    &_completed {
+      transition: background-color ease 0.1s;
+      background-color: $light-dimmed-green;
     }
   }
 }
