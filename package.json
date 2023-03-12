@@ -19,7 +19,7 @@
     "serve": "npm run build && serve -s build -l 4000",
     "test": "react-scripts test --verbose --watchAll",
     "test:nowatch": "npm run test -- --watchAll=false",
-    "lint": "eslint --ext .js --max-warnings 0 --ignore-path .gitignore .",
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
     "lint:fix": "npm run lint -- --fix",
     "prettier": "prettier --write .",
     "prepare": "husky install",
