@@ -1,0 +1,15 @@
+.flight {
+  &.schedule {
+    &__row {
+      grid-auto-columns: minmax(140px, 1fr);
+      transition: transform 0.05s ease;
+      box-shadow: inset 0px -0.3px 0px 0px white;
+
+      &:hover {
+        transform: scale(1.02);
+        box-shadow: inset 0px 0px 0px 1px white;
+        background-color: blue;
+      }
+    }
+  }
+}
