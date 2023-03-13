@@ -1,0 +1,233 @@
+$royal-blue-traditional: #0a2463ff;
+$imperial-red: #fb3640ff;
+$davys-gray: #605f5eff;
+$cerulean: #247ba0ff;
+$platinum: #e2e2e2ff;
+$magestic-green: #2f712f;
+$light-dimmed-green: #b5d2b5;
+$control-color-black: #000000;
+$control-color-gray: #e8e8e8;
+
+$step: 8px;
+
+$control-border-radius: 0.75em;
+$control-box-shadow-default-size: 0 0.23em 0 0;
+$control-box-shadow-hover-size: 0 0.33em 0 0;
+$control-default-translation: translateY(-0.2em);
+$control-hover-translation: translateY(-0.33em);
+$control-active-translation: translateY(0);
+
+$task-item-fade-in-fade-out-animation-length: 0.35s;
+
+@mixin control-default-shared-style {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  box-sizing: border-box;
+  border: 2px solid $control-color-black;
+  border-radius: $control-border-radius;
+  padding: 0.5em 0.75em;
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:disabled {
+    &,
+    &:hover:not(:active),
+    &:active {
+      transform: none;
+      box-shadow: none;
+      border-color: $davys-gray;
+      color: $davys-gray;
+    }
+  }
+}
+
+@mixin button-translations($border-color: $control-color-black, $focus-color) {
+  &:hover:not(:active),
+  &:focus-visible {
+    transform: $control-hover-translation;
+  }
+
+  &:focus-visible {
+    box-shadow: $control-box-shadow-hover-size $focus-color;
+    border-color: $focus-color;
+  }
+
+  &:hover:not(:active) {
+    box-shadow: $control-box-shadow-hover-size $border-color;
+    border-color: $border-color;
+  }
+
+  &:active,
+  &:focus-visible:active {
+    transform: $control-active-translation;
+    box-shadow: none;
+  }
+
+  &:active {
+    border-color: $border-color;
+  }
+
+  &:focus-visible:active {
+    border-color: $focus-color;
+  }
+}
+
+.task-list {
+  margin: 2 * $step;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 2 * $step;
+  min-width: 740px;
+
+  &__row {
+    display: flex;
+    column-gap: 2 * $step;
+    flex-wrap: nowrap;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  & > &__row:not(:last-child) {
+    margin-bottom: 2 * $step;
+  }
+
+  &__button {
+    @include control-default-shared-style();
+    @include button-translations($focus-color: $cerulean);
+
+    display: block;
+    transform: $control-default-translation;
+    cursor: pointer;
+    box-shadow: $control-box-shadow-default-size $control-color-black;
+    background: $control-color-gray;
+    font-weight: bold;
+
+    &_remove {
+      @include button-translations(
+        $border-color: $imperial-red,
+        $focus-color: $imperial-red
+      );
+
+      background: $control-color-gray no-repeat center
+        url('./assets/remove.svg');
+      background-size: 80%;
+      width: 30px;
+      height: 30px;
+    }
+
+    &_complete {
+      @include button-translations(
+        $border-color: $magestic-green,
+        $focus-color: $magestic-green
+      );
+
+      &:hover,
+      &:focus-visible,
+      &:active {
+        color: $magestic-green;
+      }
+    }
+  }
+
+  &__input {
+    @include control-default-shared-style();
+
+    min-width: 300px;
+
+    &:focus {
+      transform: $control-default-translation;
+      box-shadow: $control-box-shadow-default-size $cerulean;
+      border-color: $cerulean;
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__item {
+    column-gap: 2 * $step;
+    max-width: 900px;
+
+    &:not(:last-child) {
+      margin-bottom: 2 * $step;
+    }
+
+    &_animated {
+      @keyframes appear {
+        from {
+          transform: translateY(0.33em);
+          opacity: 0;
+        }
+      }
+
+      animation: appear $task-item-fade-in-fade-out-animation-length ease;
+    }
+
+    &_animated-remove {
+      @keyframes fadeOut {
+        to {
+          transform: translateY(-0.33em);
+          opacity: 0;
+        }
+      }
+
+      animation: fadeOut $task-item-fade-in-fade-out-animation-length ease;
+    }
+  }
+
+  &__checkbox {
+    align-self: center;
+  }
+
+  &-item {
+    display: flex;
+    align-items: center;
+    transition: transform ease 0.1s;
+    background-color: $platinum;
+    padding: 2 * $step;
+    width: 100%;
+
+    &:hover {
+      transform: scale(1.01);
+    }
+
+    &__chevron {
+      flex-shrink: 0;
+      background: url('./assets/chevron-right.svg') no-repeat center;
+      background-size: 100%;
+      width: 40px;
+      height: 40px;
+    }
+
+    &__text {
+      flex-grow: 1;
+      word-break: break-word;
+
+      &_completed {
+        text-decoration: line-through;
+      }
+    }
+
+    &__controls {
+      display: flex;
+      row-gap: $step;
+      flex-flow: column;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    &__created-date {
+      white-space: nowrap;
+    }
+
+    &_completed {
+      transition: background-color ease 0.1s;
+      background-color: $light-dimmed-green;
+    }
+  }
+}
