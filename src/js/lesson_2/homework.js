@@ -19,7 +19,34 @@
  * @param {number} height total number of rows (i. e. height of the tree)
  */
 function christmasTree(height) {
-  // ...
+  if (!Number.isInteger(height) || height < 1 || height > 10) {
+    throw new Error(
+      `Argument '${height}' is invalid, expected positive integer from 1 to 10`
+    );
+  }
+
+  let tree = '';
+
+  const rowLength = 2 * height - 1;
+
+  for (let i = 0; i < height; i++) {
+    const firstNumberPosition = (rowLength - 1) / 2 - i;
+    for (let j = 0; j < rowLength; j++) {
+      if (
+        j >= firstNumberPosition &&
+        j % 2 === firstNumberPosition % 2 &&
+        j < rowLength - firstNumberPosition
+      ) {
+        tree += i;
+      } else {
+        tree += ' ';
+      }
+    }
+    if (i < height - 1) {
+      tree += '\n';
+    }
+  }
+  return tree;
 }
 
 /**
@@ -46,7 +73,30 @@ function christmasTree(height) {
  * @returns {array} copy of the input array, sorted in reverse order
  */
 function reverseSort(array) {
-  // ...
+  // Проверяем, что аргумент является массивом
+  if (!Array.isArray(array)) {
+    throw new Error(
+      `Argument '${array}' is not an array, expected to be an array of numbers`
+    );
+  }
+
+  const clone = [...array];
+
+  let sorted;
+  do{
+    sorted = true;
+    for (let i = 0; i < clone.length; i++) {
+      checkIsNumber(clone[i]);
+      if (i === clone.length - 1) continue;
+      checkIsNumber(clone[i + 1]);
+
+      if (clone[i] < clone[i + 1]){
+        [clone[i], clone[i + 1]] = [clone[i + 1], clone[i]];
+        sorted = false;
+        break;
+      }
+    }
+  } while (!sorted);
 
   function checkIsNumber(value) {
     if (typeof value !== 'number' || Number.isNaN(value)) {
@@ -55,6 +105,7 @@ function reverseSort(array) {
       );
     }
   }
+  return clone;
 }
 
 export { christmasTree, reverseSort };

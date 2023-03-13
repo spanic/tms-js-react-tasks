@@ -48,26 +48,26 @@ function compareByNameLength(object) {
   // ...
 }
 
-function compare(object, getPropToCompareFn, compareFn) {
-  return compareFn(getPropToCompareFn(this), getPropToCompareFn(object));
-}
+// function compare(object, getPropToCompareFn, compareFn) {
+//   return compareFn(getPropToCompareFn(this), getPropToCompareFn(object));
+// }
 
 /**
  * Эта функция должна реализовывать логику сравнения значений id и возвращать искомый результат
  * @param {number} firstValue initial object's id (значение id исходного объекта)
  * @param {number} secondValue comparable object's id (значение id сравниваемого объекта)
  */
-function compareIds(firstValue, secondValue) {
-  // ...
-}
+// function compareIds(firstValue, secondValue) {
+//   // ...
+// }
 
 /**
  * Эта функция должна реализовывать логику сравнения значений name.length и возвращать искомый результат
  * @param {number} firstValue initial object's name length (значение длины name исходного объекта)
  * @param {number} secondValue comparable object's name length (значение длины name сравниваемого объекта)
  */
-function compareNameLengths(firstValue, secondValue) {
-  // ...
-}
+// function compareNameLengths(firstValue, secondValue) {
+//   // ...
+// }
 
 export { User, compareById, compareByNameLength };
