@@ -16,7 +16,7 @@
     "build": "npm run build:js && react-scripts build",
     "build:js": "rollup -c --bundleConfigAsCjs",
     "serve": "npm run build && serve -s build -l 4000",
-    "stubs-server": "nodemon stubs-server/express.js",
+    "stubs-server": "nodemon stubs-server/express.js --watch stubs-server/",
     "test": "react-scripts test --verbose --watchAll",
     "test:nowatch": "npm run test -- --watchAll=false",
     "lint": "eslint --ext .js --ignore-path .gitignore .",

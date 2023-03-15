@@ -4,9 +4,9 @@ module.exports = function (app) {
   app.use(
     '/airlabs/api/',
     createProxyMiddleware({
-      target: 'http://localhost:3001/',
+      target: 'http://localhost:3001',
       pathRewrite: {
-        '^/airlabs/api': '/',
+        '^/airlabs/api': '',
       },
       changeOrigin: true,
       logLevel: 'debug',

@@ -23,3 +23,8 @@ export { onClick };
  * Lesson 6
  */
 // require('./lesson_6/JSClassesPlayground');
+
+/**
+ * Lesson 9
+ */
+// require('./lesson_9/fetchPlayground');

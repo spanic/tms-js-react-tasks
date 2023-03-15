@@ -12,4 +12,10 @@
       }
     }
   }
+
+  &__extended-data {
+    .schedule-cell__value_bold {
+      font-weight: bold;
+    }
+  }
 }
