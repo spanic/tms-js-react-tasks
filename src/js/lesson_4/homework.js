@@ -17,8 +17,30 @@ import movies from '../data/moviesTestData';
  * @param {number} amount number of rating positions to return (количество мест рейтинга)
  * @returns array of movies ordered by Production_Budget desc (массив фильмов, отсортированных по значению Production_Budget в порядке убывания (от большего к меньшему))
  */
+
 function getMaxProductionBudgetMovies(amount) {
-  // ...
+  let result = [];
+  for (let i = 1; i <= amount; i++) {
+    const budgetOfLastFilm = result[result.length - 1]?.Production_Budget;
+    let maxBudget = -Infinity;
+    let filmsWithSameBudget = [];
+    for (let i = 0; i < movies.length; i++) {
+      const currentFilm = movies[i];
+      const budgetOfFilm = currentFilm?.Production_Budget;
+
+      if (typeof budgetOfFilm !== 'number') continue;
+      if (budgetOfLastFilm && budgetOfFilm >= budgetOfLastFilm) continue;
+
+      if (budgetOfFilm > maxBudget) {
+        maxBudget = budgetOfFilm;
+        filmsWithSameBudget = [currentFilm];
+      } else if (budgetOfFilm === maxBudget) {
+        filmsWithSameBudget.push(currentFilm);
+      }
+    }
+    result.push(...filmsWithSameBudget);
+  }
+  return result;
 }
 
 /**
@@ -30,7 +52,28 @@ function getMaxProductionBudgetMovies(amount) {
  * @returns map ``` {Major_Genre: [movies]} ``` where movies are sorted by ``` IMDB_Rating ``` and ``` Rotten_Tomatoes_Rating ``` desc
  */
 function getMoviesGroupedByGenres() {
-  // ...
+  const result = {};
+  for (const element of movies) {
+    const currentGenre = element.Major_Genre
+      ? element.Major_Genre
+      : element.Creative_Type;
+    if (!currentGenre) {
+      continue;
+    }
+    if (result.hasOwnProperty(currentGenre)) {
+      result[currentGenre].push(element);
+    } else {
+      result[currentGenre] = [element];
+    }
+  }
+  for (const genre in result) {
+    result[genre].sort(
+      (a, b) =>
+        b.IMDB_Rating - a.IMDB_Rating ||
+        b.Rotten_Tomatoes_Rating - a.Rotten_Tomatoes_Rating
+    );
+  }
+  return result;
 }
 
 export { getMaxProductionBudgetMovies, getMoviesGroupedByGenres };
