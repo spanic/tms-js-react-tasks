@@ -1,10 +1,7 @@
 {
   "extends": ["react-app", "react-app/jest", "prettier"],
   "rules": {
-    "indent": [
-        "error",
-        2
-    ],
+    "indent": ["error", 2],
     "quotes": [
       "error",
       "single",
@@ -15,7 +12,7 @@
     "no-restricted-globals": [
       "off",
       {
-          "name": "confirm"
+        "name": "confirm"
       }
     ],
     "no-var": "error"

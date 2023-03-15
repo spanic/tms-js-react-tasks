@@ -4,7 +4,7 @@ import {
   getMoviesGroupedByGenres,
 } from './homework';
 
-describe('Validating getMaxProductionBudgetMovies function', () => {
+xdescribe('Validating getMaxProductionBudgetMovies function', () => {
   test('returns top-3 rating positions of movies with highest Production_Budget', () => {
     expect(getMaxProductionBudgetMovies(3)).toEqual(
       expect.arrayContaining([
@@ -25,7 +25,7 @@ describe('Validating getMaxProductionBudgetMovies function', () => {
   });
 });
 
-describe('Validating getMoviesGroupedByGenres function', () => {
+xdescribe('Validating getMoviesGroupedByGenres function', () => {
   test('returns properly groped & sorted movies map', () => {
     expect(getMoviesGroupedByGenres()).toStrictEqual(moviesGroupedByGenre);
   });

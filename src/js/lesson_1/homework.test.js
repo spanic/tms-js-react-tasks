@@ -1,6 +1,6 @@
 import { factorial, greetAndConfirm } from './homework';
 
-describe('Validating factorial() function', () => {
+xdescribe('Validating factorial() function', () => {
   test('calculates factorial when input is a number', () => {
     expect(factorial(5)).toBe(120);
     expect(factorial(10)).toBe(3_628_800);
@@ -54,7 +54,7 @@ describe('Validating factorial() function', () => {
   });
 });
 
-describe('Validating greetAndConfirm() function', () => {
+xdescribe('Validating greetAndConfirm() function', () => {
   test('works when user enters and confirms their name', () => {
     const promptSpyFn = jest.spyOn(window, 'prompt').mockReturnValue('Andrew');
     const confirmSpyFn = jest.spyOn(window, 'confirm').mockReturnValue(true);

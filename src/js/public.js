@@ -18,3 +18,13 @@ export { onClick };
  * Lesson 3
  */
 // require('./lesson_3/functionsExamples');
+
+/**
+ * Lesson 6
+ */
+// require('./lesson_6/JSClassesPlayground');
+
+/**
+ * Lesson 9
+ */
+// require('./lesson_9/fetchPlayground');

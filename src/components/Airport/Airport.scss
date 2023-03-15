@@ -1,0 +1,47 @@
+@use '../shared/styles/schedule';
+@use '../shared/styles/shared';
+
+@font-face {
+  font-weight: 400;
+  src: url('../fonts/Inconsolata-Regular.ttf') format('truetype');
+  font-family: 'Airport';
+}
+
+.airport {
+  &-container {
+    &__flights {
+      display: flex;
+      justify-content: center;
+      background-color: black;
+      min-width: 900px;
+      color: white;
+    }
+
+    &-flights {
+      &__wrapper {
+        padding: 2 * shared.$step;
+        width: 1200px;
+
+        font-family: Airport, monospace;
+
+        .schedule {
+          &__row {
+            &_head {
+              align-content: center;
+              border-bottom: 3px solid #d8ba41;
+              height: 48px;
+              font-weight: bold;
+            }
+
+            &:last-child,
+            &:first-child {
+              &:not(:hover) {
+                box-shadow: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

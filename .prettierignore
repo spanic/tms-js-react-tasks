@@ -3,7 +3,10 @@
 
 # ... except src directory
 !/**/src
+!/**/stubs-server
 # ... and some extra files
 !/*.js
+!/*.json
 
 /**/data
+/package-lock.json
