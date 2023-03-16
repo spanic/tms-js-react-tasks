@@ -8,52 +8,50 @@ function Airport() {
   const [flights, setFlights] = useState();
 
   useEffect(() => {
-    subscribeToArrDepChangeEvents();
-    emitChangeEventForCheckedArrDepOption();
+    subscribeToReqTypeChangeEvents();
+    emitChangeEventForCheckedReqTypeInputEl();
   }, []);
 
-  function emitChangeEventForCheckedArrDepOption() {
-    const defaultReqTypeInputEl = document.querySelector(
-      'input[type="radio"][checked]'
-    );
-    if (!defaultReqTypeInputEl) {
-      document
-        .querySelector('input[type="radio"]')
-        .setAttribute('checked', true);
-    }
-    document
-      .querySelector('input[type="radio"][checked]')
-      .dispatchEvent(new Event('change', { bubbles: true }));
-  }
-
-  function subscribeToArrDepChangeEvents() {
+  function subscribeToReqTypeChangeEvents() {
     document
       .querySelector('div.airport-container__controls')
-      ?.addEventListener('change', (event) => {
+      ?.addEventListener('change', async (event) => {
         const chosenReqType = event.target.value;
-        getScheduledFlights(chosenReqType);
+        const scheduledFlights = await getScheduledFlights(chosenReqType);
+        storeScheduledFlights(scheduledFlights);
       });
   }
 
-  function getScheduledFlights(chosenReqType) {
-    const xhr = new XMLHttpRequest();
-    xhr.open(
-      'GET',
-      `/airlabs/api/schedules?${chosenReqType}=MSQ&api_key=${AIRLABS_API_KEY}`
+  function emitChangeEventForCheckedReqTypeInputEl() {
+    let checkedReqTypeInputEl = document.querySelector(
+      'input[type="radio"][checked]'
     );
-    xhr.responseType = 'json';
-    xhr.onload = () => {
-      if (xhr.status === 200) {
-        const data = xhr.response;
-        displayScheduledFlights(data);
-      } else {
-        console.error('Something went wrong!');
-      }
-    };
-    xhr.send();
+    if (!checkedReqTypeInputEl) {
+      checkedReqTypeInputEl = document.querySelector('input[type="radio"]');
+      checkedReqTypeInputEl.setAttribute('checked', true);
+    }
+    checkedReqTypeInputEl.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
-  function displayScheduledFlights(data) {
+  async function getScheduledFlights(chosenReqType, airportIcaoCode = 'UMMS') {
+    return await fetch(
+      `/airlabs/api/schedules?${chosenReqType}=${airportIcaoCode}&api_key=${AIRLABS_API_KEY}`
+    )
+      .then((response) => response.ok && response.json())
+      .then((response) => response.response);
+  }
+
+  async function getAirlineData(flight) {
+    const airlineCode = flight.airline_icao;
+    const airlineData = await fetch(
+      `/airlabs/api/airlines?icao_code=${airlineCode}&api_key=${AIRLABS_API_KEY}`
+    )
+      .then((response) => response.ok && response.json())
+      .then((response) => response.response[0]);
+    return airlineData;
+  }
+
+  function storeScheduledFlights(data) {
     data = data.map((flight) => {
       return {
         ...flight,
@@ -71,14 +69,14 @@ function Airport() {
             type="radio"
             id="arrivals"
             name="arr_dep_options"
-            value="arr_iata"
+            value="arr_icao"
           />
           <label htmlFor="arrivals">Arrivals</label>
           <input
             type="radio"
             id="departures"
             name="arr_dep_options"
-            value="dep_iata"
+            value="dep_icao"
             defaultChecked
           />
           <label htmlFor="departures">Departures</label>

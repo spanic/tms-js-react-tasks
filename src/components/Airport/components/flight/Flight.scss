@@ -1,19 +1,59 @@
+@mixin selected {
+  transform: scale(1.02);
+  box-shadow: inset 0px 0px 0px 1px white;
+  background-color: blue;
+}
+
 .flight {
   &.schedule {
     &__row {
       grid-auto-columns: minmax(140px, 1fr);
       transition: transform 0.05s ease;
+      cursor: pointer;
       box-shadow: inset 0px -0.3px 0px 0px white;
+      white-space: unset;
 
       &:hover {
-        transform: scale(1.02);
-        box-shadow: inset 0px 0px 0px 1px white;
-        background-color: blue;
+        @include selected();
       }
     }
   }
 
+  &_selected {
+    &.schedule__row {
+      @include selected();
+    }
+  }
+
   &__extended-data {
+    background-color: white;
+    color: black;
+
+    @keyframes appear {
+      from {
+        transform: rotate3d(1, 0, 0, 90deg);
+        transform-origin: top;
+        opacity: 0;
+      }
+    }
+
+    animation: appear 0.2s ease;
+
+    &_hidden {
+      transform: rotate3d(1, 0, 0, -90deg);
+      transform-origin: top;
+      opacity: 0;
+
+      @keyframes hide {
+        from {
+          transform: none;
+          opacity: 1;
+        }
+      }
+
+      animation: hide 0.2s ease;
+    }
+
     .schedule-cell__value_bold {
       font-weight: bold;
     }
