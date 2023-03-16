@@ -3,8 +3,6 @@ import Flight from './components/flight/Flight';
 import './Airport.scss';
 
 function Airport() {
-  const AIRLABS_API_KEY = '';
-
   const [flights, setFlights] = useState();
 
   useEffect(() => {
@@ -35,7 +33,7 @@ function Airport() {
 
   async function getScheduledFlights(chosenReqType, airportIcaoCode = 'UMMS') {
     return await fetch(
-      `/airlabs/api/schedules?${chosenReqType}=${airportIcaoCode}&api_key=${AIRLABS_API_KEY}`
+      `/airlabs/api/schedules?${chosenReqType}=${airportIcaoCode}`
     )
       .then((response) => response.ok && response.json())
       .then((response) => response.response);
@@ -44,7 +42,7 @@ function Airport() {
   async function getAirlineData(flight) {
     const airlineCode = flight.airline_icao;
     const airlineData = await fetch(
-      `/airlabs/api/airlines?icao_code=${airlineCode}&api_key=${AIRLABS_API_KEY}`
+      `/airlabs/api/airlines?icao_code=${airlineCode}`
     )
       .then((response) => response.ok && response.json())
       .then((response) => response.response[0]);

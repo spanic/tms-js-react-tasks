@@ -41,7 +41,7 @@ Your app is ready to be deployed!
 
 ### `npm run serve`
 
-Triggers the `npm run build` command above and serves the prod-bundled applicaiton from the `build` folder on [http://localhost:4000](http://localhost:4000). Uses [Vercel's serve](https://github.com/vercel/serve) inside.
+Triggers the `npm run build` command above and serves the prod-bundled applicaiton from the `build` folder on [http://localhost:4000](http://localhost:4000). Uses [Express](https://expressjs.com/) inside.
 
 ### `npm run prettier`
 
