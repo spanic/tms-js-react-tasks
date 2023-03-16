@@ -9,3 +9,13 @@ exports.getScheduledFlights = function (req, res) {
 exports.getAirlineData = function (req, res) {
   res.send(airlinesData[req.query.icao_code]);
 };
+
+exports.getAirportsData = function (req, res) {
+  const requestedAirportIcaoCodes = req.query.icao_code?.split(',') || [];
+
+  const filteredAirportsData = airportsData.filter((airportData) =>
+    requestedAirportIcaoCodes.includes(airportData.icao_code)
+  );
+
+  res.status(200).send({ response: filteredAirportsData });
+};

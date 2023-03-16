@@ -16,7 +16,9 @@ function Airport() {
       ?.addEventListener('change', async (event) => {
         const chosenReqType = event.target.value;
         const scheduledFlights = await getScheduledFlights(chosenReqType);
-        storeScheduledFlights(scheduledFlights);
+        const flightsWithExtendedAirportData =
+          await updateFlightsWithExtendedAirportData(scheduledFlights);
+        storeScheduledFlights(flightsWithExtendedAirportData);
       });
   }
 
@@ -37,6 +39,39 @@ function Airport() {
     )
       .then((response) => response.ok && response.json())
       .then((response) => response.response);
+  }
+
+  async function updateFlightsWithExtendedAirportData(scheduledFlights) {
+    const uniqueCodesSet = scheduledFlights.reduce((acc, flight) => {
+      return acc.add(flight.dep_icao).add(flight.arr_icao);
+    }, new Set());
+
+    const airportsCodesRequestParam = [...uniqueCodesSet].join(',');
+
+    const airportsData = await fetch(
+      `/airlabs/api/airports?icao_code=${airportsCodesRequestParam}`
+    )
+      .then((response) => response.ok && response.json())
+      .then((response) => response.response);
+
+    const icaoCodeToAiportNameMap = airportsData.reduce(
+      (acc, airportData) => acc.set(airportData.icao_code, airportData.name),
+      new Map()
+    );
+
+    scheduledFlights = scheduledFlights.map((flight) => {
+      const { dep_icao, arr_icao } = flight;
+      return {
+        ...flight,
+        extended_data: {
+          ...flight.extended_data,
+          dep_airport_name: icaoCodeToAiportNameMap.get(dep_icao),
+          arr_airport_name: icaoCodeToAiportNameMap.get(arr_icao),
+        },
+      };
+    });
+
+    return scheduledFlights;
   }
 
   async function getAirlineData(flight) {
