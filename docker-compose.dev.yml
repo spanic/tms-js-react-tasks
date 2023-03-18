@@ -2,12 +2,15 @@ services:
   express:
     container_name: express
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
     build:
       context: .
     ports:
       - 3001:3001
-    command: npm run start
+    volumes:
+      - ./stubs-server:/usr/express
+      - express-node_modules:/usr/express/node_modules
+    command: npm run start:dev
     links:
       - "mongo:db"
 
@@ -20,4 +23,5 @@ services:
       - 27017:27017
 
 volumes:
+  express-node_modules:
   mongodb-persist-data:
