@@ -1,0 +1,11 @@
+services:
+  express:
+    environment:
+      - NODE_ENV=production
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: express
+    ports:
+      - 3001:3001
+    command: npm run start
