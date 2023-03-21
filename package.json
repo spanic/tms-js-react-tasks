@@ -13,6 +13,7 @@
   },
   "scripts": {
     "start": "concurrently --names \"JS,REACT,STUBS\" -c \"bgYellow.bold,bgBlue.bold,bgGreen.bold\" \"npm run build:js -- --watch\" \"react-scripts start FAST_REFRESH=false\" \"npm run start:dev -w stubs-server\"",
+    "start:with-db": "concurrently --names \"JS,REACT,STUBS\" -c \"bgYellow.bold,bgBlue.bold,bgGreen.bold\" \"npm run build:js -- --watch\" \"react-scripts start FAST_REFRESH=false\" \"cross-env LOCAL_WITH_DOCKER_DB=true npm run start:dev -w stubs-server\"",
     "build": "npm run build:js && react-scripts build",
     "build:js": "rollup -c --bundleConfigAsCjs",
     "serve": "npm run build && node build/server.js",
@@ -40,6 +41,7 @@
     "@rollup/plugin-commonjs": "^24.0.1",
     "@testing-library/user-event": "^14.4.3",
     "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "eslint-config-prettier": "^8.6.0",
     "express": "^4.18.2",

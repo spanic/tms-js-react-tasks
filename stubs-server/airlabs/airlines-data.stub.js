@@ -8,6 +8,4 @@ const airlinesData = {
   ],
 };
 
-module.exports = {
-  airlinesData,
-};
+export default airlinesData;

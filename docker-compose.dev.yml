@@ -2,7 +2,9 @@ services:
   express:
     container_name: express
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
+      - IN_DOCKER=true
+    env_file: ./.env
     build:
       context: .
     ports:
@@ -12,15 +14,25 @@ services:
       - express-node_modules:/usr/express/node_modules
     command: npm run start:dev
     links:
-      - "mongo:db"
+      - mongo
+    depends_on:
+      mongo:
+        condition: service_healthy
 
   mongo:
     container_name: mongo
     image: mongo
+    env_file: [./stubs-server/mongo-db/.env, ./.env]
     volumes:
       - mongodb-persist-data:/data/db
+      - ./stubs-server/mongo-db/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     ports:
       - 27017:27017
+    healthcheck:
+      test: echo 'db.runCommand({serverStatus:1}).ok'
+      interval: 10s
+      timeout: 10s
+      retries: 3
 
 volumes:
   express-node_modules:

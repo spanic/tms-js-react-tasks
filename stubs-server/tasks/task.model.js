@@ -8,7 +8,4 @@ class Task {
 
 const tasks = new Map();
 
-module.exports = {
-  Task,
-  tasks,
-};
+export { Task, tasks };
