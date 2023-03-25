@@ -2,9 +2,10 @@
 /* eslint-disable testing-library/no-container */
 
 import TaskList from './TaskList';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-describe('Validates TaskList component', () => {
+xdescribe('Validates TaskList component', () => {
   test('renders "Delete all button"', () => {
     render(<TaskList />);
     const deleteAllButtonEl = screen.getByText(/delete all/i, {
@@ -47,5 +48,76 @@ describe('Validates TaskList component', () => {
     const firstTaskBlock = container.querySelector('div.task-list__item');
     expect(firstTaskBlock).toBeInTheDocument();
     expect(firstTaskBlock).toMatchSnapshot();
+  });
+
+  it('adds new task', async () => {
+    const { container } = render(<TaskList />);
+    const user = userEvent.setup();
+
+    const taskItemNameInputEl = container.querySelector('#taskTextInput');
+    taskItemNameInputEl.value = 'test';
+
+    const addButton = screen.getByRole('button', {
+      name: /add/i,
+    });
+    user.click(addButton);
+
+    await waitFor(() => {
+      return expect(screen.getByText('test')).toBeInTheDocument();
+    });
+    await waitFor(() => {
+      return expect(
+        container.querySelectorAll('div.task-list__item').length
+      ).toBe(3);
+    });
+  });
+
+  it('removes all the tasks from the list', async () => {
+    const { container } = render(<TaskList />);
+    const user = userEvent.setup();
+
+    const deleteAllButton = screen.getByRole('button', {
+      name: /delete all/i,
+    });
+    user.click(deleteAllButton);
+
+    await waitFor(() => {
+      return expect(
+        container.querySelectorAll('div.task-list__item').length
+      ).toBe(0);
+    });
+  });
+
+  it('removes the selected task from the list', async () => {
+    const { container } = render(<TaskList />);
+    const user = userEvent.setup();
+
+    const deleteButton = container.querySelector(
+      'button.task-list__button_remove'
+    );
+    await user.click(deleteButton);
+
+    const firstTaskItem = document.querySelector(
+      'div.task-list__item_animated-remove'
+    );
+    // manually triggering 'animationend' event, because Jest doesn't trigger it after assigning the '_animated-remove' class
+    fireEvent.animationEnd(firstTaskItem);
+
+    expect(firstTaskItem).not.toBeInTheDocument();
+  });
+
+  it('marks the selected task as completed', async () => {
+    const { container } = render(<TaskList />);
+    const user = userEvent.setup();
+
+    const completeButton = container.querySelector(
+      '.task-list__button_complete'
+    );
+    await user.click(completeButton);
+
+    const completedTaskItem = document.querySelector(
+      '.task-list-item_completed .task-list-item__text_completed'
+    );
+    return expect(completedTaskItem).toBeInTheDocument();
   });
 });

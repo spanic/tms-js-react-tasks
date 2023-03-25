@@ -7,6 +7,18 @@ import './TaskList.scss';
  * 1. Комментируете имеющийся узел
  * 2. Реализуете логику его добавления __вручную__ внутри ``` useEffect() ```
  *
+ * Также реализуйте следующий функционал:
+ * 1. Добавление новой задачи в список по клику на кнопку "Add". Текст задачи нужно получать из поля ``` taskTextInput ```.
+ *    Если поле ввода пустое или содержит только пробелы, добавление задачи должно быть отменено. После добавления задачи, очистите поле ввода.
+ *    Чтобы задача добавлялась в список с анимацией, не забудьте добавить класс ``` task-list__item_animated ```.
+ *
+ *    Совет: чтобы не создавать вручную всю внутреннюю структуру блока с задачей, в рамках данного упражнения вы можете использовать функцию ``` insertAdjacentHTML ``` (подумайте, как именно).
+ *
+ * 2. Удаление всех задач из списка по клику на кнопку "Delete all"
+ * 3. Удаление выбранной задачи по клику на кнопку с иконкой "X". Чтобы задача удалялась также с анимацией, добавьте блоку класс ``` task-list__item_animated-remove ``` непосредственно перед удалением
+ * 4. Отметку задачи как завершенной по клику на кнопку "Complete". CSS-классы, которые необходимо добавить блоку с задачей, найдите в файле TaskList.scss самостоятельно
+ *
+ *
  * @returns TaskList component
  */
 function TaskList() {
@@ -50,6 +62,26 @@ function TaskList() {
      * First task item (<div className="task-list__item">)
      */
     // ...
+
+    /**
+     * Add new task
+     */
+    // ...
+
+    /**
+     * Delete all tasks
+     */
+    // ...
+
+    /**
+     * Delete task
+     */
+    // ...
+
+    /**
+     * Complete task
+     */
+    // ...
   }, []);
 
   return (
@@ -65,11 +97,14 @@ function TaskList() {
         */}
         {/* Добавьте вручную: */}
         <input
+          id="taskTextInput"
           className="task-list__input"
           type="text"
           placeholder="Enter your task here..."
         ></input>
-        <button className="task-list__button">Add</button>
+        <button id="addBtn" className="task-list__button">
+          Add
+        </button>
       </div>
       <div className="task-list__row">
         {/* Добавьте вручную: */}
@@ -93,9 +128,9 @@ function TaskList() {
       </div>
       <div className="task-list__container">
         {/* Добавьте вручную: */}
-        <div className="task-list__item">
+        <div className="task-list__item task-list-item">
           <div className="task-list-item__chevron"></div>
-          <span>
+          <span className="task-list-item__text">
             Occaecat adipisicing dolor labore eu nostrud amet fugiat. Occaecat
             dolor aute mollit aute. Ad laborum elit Lorem exercitation non
             proident excepteur cupidatat deserunt ut cillum sit. Cupidatat quis
@@ -113,9 +148,9 @@ function TaskList() {
             </span>
           </div>
         </div>
-        <div className="task-list__item">
+        <div className="task-list__item task-list-item">
           <div className="task-list-item__chevron"></div>
-          <span>
+          <span className="task-list-item__text">
             Reprehenderit exercitation consequat occaecat laboris excepteur.
             Lorem consequat pariatur aute incididunt velit culpa consequat
             proident occaecat magna culpa esse qui veniam. Minim proident

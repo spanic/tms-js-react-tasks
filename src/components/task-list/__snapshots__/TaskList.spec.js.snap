@@ -20,12 +20,14 @@ exports[`Validates TaskList component renders "Total" block 1`] = `
 
 exports[`Validates TaskList component renders first task block 1`] = `
 <div
-  class="task-list__item"
+  class="task-list__item task-list-item"
 >
   <div
     class="task-list-item__chevron"
   />
-  <span>
+  <span
+    class="task-list-item__text"
+  >
     Occaecat adipisicing dolor labore eu nostrud amet fugiat. Occaecat dolor aute mollit aute. Ad laborum elit Lorem exercitation non proident excepteur cupidatat deserunt ut cillum sit. Cupidatat quis sint velit ea consequat minim.
   </span>
   <div

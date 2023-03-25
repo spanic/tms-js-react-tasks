@@ -4,10 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import TaskList from './components/task-list/TaskList';
+import Airport from './components/airport/Airport';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
+    <Airport />
     <TaskList />
     <App />
   </>
