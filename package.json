@@ -12,8 +12,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "concurrently --names \"JS,REACT,STUBS\" -c \"bgYellow.bold,bgBlue.bold,bgGreen.bold\" \"npm run build:js -- --watch\" \"react-scripts start FAST_REFRESH=false\" \"npm run start:dev -w stubs-server\"",
-    "start:with-db": "concurrently --names \"JS,REACT,STUBS\" -c \"bgYellow.bold,bgBlue.bold,bgGreen.bold\" \"npm run build:js -- --watch\" \"react-scripts start FAST_REFRESH=false\" \"cross-env LOCAL_WITH_DOCKER_DB=true npm run start:dev -w stubs-server\"",
+    "start": "concurrently -P --names \"JS,REACT,STUBS\" -c \"bgYellow.bold,bgBlue.bold,bgGreen.bold\" \"npm run build:js -- --watch\" \"cross-env FAST_REFRESH=false react-scripts start\" \"cross-env {1} npm run start:dev -w stubs-server\"",
+    "start:with-db": "npm run start -- -- \"LOCAL_WITH_DOCKER_DB=true\"",
+    "start:with-docker": "concurrently -P --names \"JS,REACT\" -c \"bgYellow.bold,bgBlue.bold\" \"npm run build:js -- --watch\" \"cross-env FAST_REFRESH=false react-scripts start\"",
     "build": "npm run build:js && react-scripts build",
     "build:js": "rollup -c --bundleConfigAsCjs",
     "serve": "npm run build && node build/server.js",

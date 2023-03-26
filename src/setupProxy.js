@@ -2,7 +2,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function (app) {
   app.use(
-    '/airlabs/api/',
+    ['/airlabs/api/', '/tasks'],
     createProxyMiddleware({
       target: 'http://localhost:3001',
       pathRewrite: {

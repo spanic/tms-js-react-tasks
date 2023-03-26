@@ -8,23 +8,49 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 3. Open it in your IDE
 4. Run `npm install` in terminal
 5. Create a new Git branch from `master`
-6. Run `npm run test`
-7. Check the failed tests, implement the requested functions
-8. Press `q` when all the tests are green (passed) or yellow (skipped)
-9. Execute `git add .`, `git commit -m "{your_commit_message}"`, `git push origin {your_branch_name}` - or use IDE's GUI for the same
-10. Check the Github Actions tab - your last CI job execution should be green
-11. Create a pull-request to this repository
+6. Enable tests for the homework tasks you're going to solve (remove `x` from `xdescribe(...)` in the appropriate `spec.js` file)
+7. Run `npm run test`
+8. Check the failed tests, implement the requested functionality
+9. Press `q` when all the tests are green (passed) or yellow (skipped)
+10. Execute `git add .`, `git commit -m "{your_commit_message}"`, `git push origin {your_branch_name}` - or use IDE's GUI for the same
+11. Check the Github Actions tab - your last CI job execution should be green
+12. Create a pull-request to this repository
 
+## Startup modes
+
+| Mode                                         | Description                                                                 | Steps                                                                                                                                                                                                                                  |
+|----------------------------------------------|-----------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| React app + stubs server (dev. mode)         | Hot reload for React app and stubs server, no DB, no Docker                 | 1️⃣ `npm i` <br> 2️⃣ `npm run start`                                                                                                                                                                                                      |
+| React app + stubs server (dev. mode) + Mongo | Same as above, but connected to MongoDB served in Docker                    | 1️⃣ `npm i` <br> 2️⃣ Create `.env` file <br> 3️⃣ For the first time – `docker compose -f docker-compose.yml up mongo --build` <br> 3️⃣-a. Start __mongo__ container from Docker Desktop GUI <br> 4️⃣ `npm run start:with-db`                  |
+| React app (dev. mode) + stubs server + Mongo | Hot reload for React app, stubs server and MongoDB will be served in Docker | 1️⃣ `npm i` <br> 2️⃣ Create `.env` file <br> 3️⃣ For the first time – `docker compose -f docker-compose.yml up --build` <br> 3️⃣-a. Start __tms-js-react-tasks__ containers from Docker Desktop GUI <br> 4️⃣ `npm run start:with-docker`      |
+| React app (prod. mode)                       | No hot reload, stubs server and MongoDB will be served in Docker            | 1️⃣ `npm i` <br> 2️⃣ Create `.env` file <br> 3️⃣ For the first time – `docker compose -f docker-compose.yml up --build` <br> 3️⃣-a. Start __tms-js-react-tasks__ containers from Docker Desktop GUI <br> 4️⃣ `npm run serve`                  |
+
+## Using Docker
+
+This application comes with 2 images to be served in Docker: __express__ (for stubs server) and __mongo__ (MongoDB).\
+⚠️ Before using them don't forget to create the `.env` file in the project root folder with the following contents:
+
+> `MONGO_USER={username}`\
+> `MONGO_PASSWORD={password}`\
+> `MONGO_DB=tasks`\
+> `MONGO_INITDB_ROOT_USERNAME={root_username}`\
+> `MONGO_INITDB_ROOT_PASSWORD={root_password}`\
+> `MONGO_INITDB_DATABASE=admin`
+
+and replace the data in `{...}` by your own preference.
 
 ## Available Scripts
 
 ### `npm run start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Concurrently runs npm scripts to start application in development mode. App itself will be running on [http://localhost:3000](http://localhost:3000), stubs server will be listening port 3001. The page will reload when you make changes.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### `npm run start:with-db`
+
+Same as `npm run start`, but stubs server will try to connect to pre-configured MongoDB database instance running in __mongo__ Docker container.
+
+### `npm run start:with-docker`
+Hot reload will be available only for React app, assuming that you've already launched docker with both __express__ and __mongo__ containers.
 
 ### `npm run test`
 
