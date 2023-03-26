@@ -18,9 +18,17 @@
  *    ``` throw new Error('Request instance cannot be created: provided empty url'); ```
  */
 class Request {
+
     #method;
     #url;
     #body;
+
+    constructor(method, url, body) {
+        this.#method = method;
+        this.#url = url;
+        this.#body = body;
+        Object.freeze(this);
+    }
 
     get method() {
         return this.#method;
@@ -28,7 +36,7 @@ class Request {
 
     set method(method) {
         throw new Error(`Request instance is immutable, modification is not supported,
-    create a new object using Request.RequestBuilder() instead`);
+create a new object using Request.RequestBuilder() instead`);
     }
 
     get url() {
@@ -37,7 +45,7 @@ class Request {
 
     set url(url) {
         throw new Error(`Request instance is immutable, modification is not supported,
-    create a new object using Request.RequestBuilder() instead`);
+create a new object using Request.RequestBuilder() instead`);
     }
 
     get body() {
@@ -46,45 +54,38 @@ class Request {
 
     set body(body) {
         throw new Error(`Request instance is immutable, modification is not supported,
-    create a new object using Request.RequestBuilder() instead`);
+create a new object using Request.RequestBuilder() instead`);
     }
 
-    static RequestBuilder() {
+    static RequestBuilder = class {
+        #method;
+        #url;
+        #body;
 
-        constructor(){
-            Request.#method = method;
-        }
-
-        method;
-        url;
-        body;
-
-        setMethod() {
-            
+        setMethod(method) {
+            this.#method = method;
+            return this;
         }
 
         setUrl(url) {
-            return url;
+            this.#url = url;
+            return this;
         }
 
         setBody(body) {
-            return body;
+            this.#body = body;
+            return this;
         }
 
         build() {
-            return constructor();
+            if (!this.#url) {
+                throw new Error('Request instance cannot be created: provided empty url');
+            }
+
+            return new Request(this.#method, this.#url, this.#body);
         }
-
-
-
     }
 
-    constructor(method, url, body) {
-        this.#method = method;
-        this.#url = url;
-        this.#body = body;
-        Object.freeze(this);
-    }
 }
 
 export { Request };
