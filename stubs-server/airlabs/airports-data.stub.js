@@ -73,6 +73,4 @@ const airportsData = [
   },
 ];
 
-module.exports = {
-  airportsData,
-};
+export default airportsData;

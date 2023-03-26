@@ -326,6 +326,4 @@ const scheduledFlights = [
   },
 ];
 
-module.exports = {
-  scheduledFlights,
-};
+export default scheduledFlights;

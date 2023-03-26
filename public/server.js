@@ -20,11 +20,18 @@ app.use(
         process.env.AIRLABS_API_KEY
       }`;
     },
-    logLevel: 'debug',
     secure: false,
     changeOrigin: true,
   })
 );
+
+app.use(
+  '/tasks',
+  createProxyMiddleware({
+    target: 'http://localhost:3001',
+    changeOrigin: true,
+  })
+)
 
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
