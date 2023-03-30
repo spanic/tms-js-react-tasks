@@ -74,14 +74,14 @@ function Airport() {
     return scheduledFlights;
   }
 
-  async function getAirlineData(flight) {
-    const airlineCode = flight.airline_icao;
-    const airlineData = await fetch(
-      `/airlabs/api/airlines?icao_code=${airlineCode}`
-    )
-      .then((response) => response.ok && response.json())
-      .then((response) => response.response[0]);
-    return airlineData;
+  /**
+   * Fetches additional airline data for selected flight & updates the component's state
+   * @param {object} selectedFlight model of Flight component that user has clicked on
+   */
+  async function getAirlineData(selectedFlight) {
+    let updatedFlights;
+    // ...
+    setFlights(updatedFlights);
   }
 
   function storeScheduledFlights(data) {
