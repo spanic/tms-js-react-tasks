@@ -12,14 +12,13 @@ function getAirlineData(req, res) {
 
 function getAirportsData(req, res) {
   const requestedAirportsIcaoCodes = req.query.icao_code?.split(',');
-  console.log(requestedAirportsIcaoCodes);
   if (requestedAirportsIcaoCodes?.length) {
     const requestedAirportsData = airportsData.filter((airportData) =>
       requestedAirportsIcaoCodes.includes(airportData.icao_code)
     );
     res.send({ response: requestedAirportsData });
   } else {
-    res.status(200).json({ response: null });
+    res.status(200).json({ response: airportsData });
   }
 }
 

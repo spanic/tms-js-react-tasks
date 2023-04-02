@@ -16,7 +16,7 @@ app.use(
       '^/airlabs/api': '/api/v9',
     },
     onProxyReq: (proxyReq, req, res) => {
-      proxyReq.path += `${req.query ? '&' : '?'}api_key=${
+      proxyReq.path += `${Object.entries(req.query).length ? '&' : '?'}api_key=${
         process.env.AIRLABS_API_KEY
       }`;
     },

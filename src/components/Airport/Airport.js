@@ -1,24 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Flight from './components/flight/Flight';
+import { Select } from 'antd';
 import './Airport.scss';
 
 function Airport() {
   const [flights, setFlights] = useState();
 
-  useEffect(() => {
-    subscribeToReqTypeChangeEvents();
-    emitChangeEventForCheckedReqTypeInputEl();
-  }, []);
-
   function subscribeToReqTypeChangeEvents() {
     document
       .querySelector('div.airport-container__controls')
-      ?.addEventListener('change', async (event) => {
-        const chosenReqType = event.target.value;
-        const scheduledFlights = await getScheduledFlights(chosenReqType);
-        const flightsWithExtendedAirportData =
-          await updateFlightsWithExtendedAirportData(scheduledFlights);
-        storeScheduledFlights(flightsWithExtendedAirportData);
+      ?.addEventListener('change', function (event) {
+        const requestType = event.target.value;
+        // ...
       });
   }
 
@@ -33,7 +26,7 @@ function Airport() {
     checkedReqTypeInputEl.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
-  async function getScheduledFlights(chosenReqType, airportIcaoCode = 'UMMS') {
+  async function getScheduledFlights(chosenReqType, airportIcaoCode) {
     return await fetch(
       `/airlabs/api/schedules?${chosenReqType}=${airportIcaoCode}`
     )
@@ -41,37 +34,24 @@ function Airport() {
       .then((response) => response.response);
   }
 
-  async function updateFlightsWithExtendedAirportData(scheduledFlights) {
-    const uniqueCodesSet = scheduledFlights.reduce((acc, flight) => {
-      return acc.add(flight.dep_icao).add(flight.arr_icao);
-    }, new Set());
-
-    const airportsCodesRequestParam = [...uniqueCodesSet].join(',');
-
-    const airportsData = await fetch(
-      `/airlabs/api/airports?icao_code=${airportsCodesRequestParam}`
-    )
+  async function getAirportsData() {
+    return await fetch('/airlabs/api/airports')
       .then((response) => response.ok && response.json())
       .then((response) => response.response);
+  }
 
-    const icaoCodeToAiportNameMap = airportsData.reduce(
-      (acc, airportData) => acc.set(airportData.icao_code, airportData.name),
-      new Map()
-    );
-
-    scheduledFlights = scheduledFlights.map((flight) => {
+  function updateFlightsWithExtendedAirportData(flights) {
+    return flights.map((flight) => {
       const { dep_icao, arr_icao } = flight;
       return {
         ...flight,
         extended_data: {
           ...flight.extended_data,
-          dep_airport_name: icaoCodeToAiportNameMap.get(dep_icao),
-          arr_airport_name: icaoCodeToAiportNameMap.get(arr_icao),
+          // dep_airport_name: airports.get(dep_icao).name,
+          // arr_airport_name: airports.get(arr_icao).name,
         },
       };
     });
-
-    return scheduledFlights;
   }
 
   /**
@@ -84,7 +64,7 @@ function Airport() {
     setFlights(updatedFlights);
   }
 
-  function storeScheduledFlights(data) {
+  function storeFlights(data) {
     data = data.map((flight) => {
       return {
         ...flight,
@@ -94,10 +74,22 @@ function Airport() {
     setFlights(data);
   }
 
+  function getAirportsDropdownValues(airports) {
+    // ...
+  }
+
   return (
     <>
       <div id="airportContainer" className="airport-container">
         <div className="airport-container__controls">
+          <Select
+            showSearch
+            placeholder="Select an airport"
+            optionFilterProp="children"
+            filterOption={(input, option) =>
+              (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+            }
+          />
           <input
             type="radio"
             id="arrivals"
@@ -114,20 +106,34 @@ function Airport() {
           />
           <label htmlFor="departures">Departures</label>
         </div>
-        <div className="airport-container__flights">
-          <div className="airport-container-flights__wrapper">
-            <div className="schedule__row schedule__row_head">
-              <div className="schedule-row__cell">Flight number</div>
-              <div className="schedule-row__cell">Departure</div>
-              <div className="schedule-row__cell">Arrival</div>
-              <div className="schedule-row__cell">Aircraft</div>
-              <div className="schedule-row__cell">Status</div>
+        {Array.isArray(flights) && flights.length ? (
+          <div className="airport-container__flights airport-container-flights">
+            <div className="airport-container-flights__wrapper">
+              <div className="schedule__row schedule__row_head">
+                <div className="schedule-row__cell">Flight number</div>
+                <div className="schedule-row__cell">Departure</div>
+                <div className="schedule-row__cell">Arrival</div>
+                <div className="schedule-row__cell">Aircraft</div>
+                <div className="schedule-row__cell">Status</div>
+              </div>
+              {flights?.map((flight) => (
+                <Flight key={flight.key} flight={flight} />
+              ))}
             </div>
-            {flights?.map((flight) => (
-              <Flight key={flight.key} flight={flight} />
-            ))}
           </div>
-        </div>
+        ) : (
+          <div className="airport-container__no-data airport-container-no-data">
+            <div className="airport-container-no-data__icon"></div>
+            <div className="airport-container-no-data__text">
+              <span className="airport-container-no-data__text_bold">
+                Sorry, no data for now.
+              </span>
+              <br />
+              Please choose another airport or change your Arrival/Departure
+              preference, or try again later
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

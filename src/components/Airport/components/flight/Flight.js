@@ -58,7 +58,7 @@ function Flight({ flight, onClick }) {
           <div className="schedule-row__cell">
             <BoldScheduleCellValue>Airline:</BoldScheduleCellValue>
             <div className="schedule-cell__value">
-              {flight.additional_data.airline_name}
+              {flight.additional_data?.airline_name}
             </div>
           </div>
         </FlightAdditionalData>
