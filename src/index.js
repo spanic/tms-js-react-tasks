@@ -20,7 +20,7 @@ root.render(
 // require('./js/lesson_2');
 // require('./js/lesson_3');
 // require('./js/lesson_4');
-// require('./js/lesson_5');
+require('./js/lesson_5');
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
