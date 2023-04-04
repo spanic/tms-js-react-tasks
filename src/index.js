@@ -5,10 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import TaskList from './components/task-list/TaskList';
 import Airport from './components/airport/Airport';
+import Lifecycle from './components/lifecycle/Lifecycle';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
+    <Lifecycle />
     <Airport />
     <TaskList />
     <App />
