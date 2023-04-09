@@ -1,4 +1,5 @@
 import { ObjectId } from 'mongodb';
+
 import db from '../db.mjs';
 
 async function getAllTasks(req, res) {

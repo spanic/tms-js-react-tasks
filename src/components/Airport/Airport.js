@@ -1,6 +1,8 @@
-import { useState } from 'react';
-import Flight from './components/flight/Flight';
 import { Select } from 'antd';
+import { useState } from 'react';
+
+import Flight from './components/flight/Flight.js';
+
 import './Airport.scss';
 
 function Airport() {

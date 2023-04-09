@@ -1,0 +1,76 @@
+@use '../../../shared/styles/shared';
+
+$geek-blue-1: #f0f5ff;
+$geek-blue-8: #10239e;
+$geek-blue-9: #061178;
+$gray-12: #141414;
+
+$default-icon-size: 20px;
+
+.navigation-link {
+  display: flex;
+  align-items: center;
+  transition: background-color 0.1s ease;
+  margin: shared.$step;
+  border-radius: 6px;
+  background-color: $geek-blue-8;
+  padding: shared.$step;
+  overflow: hidden;
+  color: white;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &:hover,
+  &:active {
+    background-color: $geek-blue-9;
+    color: white;
+  }
+
+  &_active {
+    &,
+    &:hover,
+    &:active {
+      background-color: $geek-blue-1;
+      color: $gray-12;
+    }
+  }
+
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &_collapsed {
+    justify-content: center;
+  }
+
+  &__icon {
+    stroke: white;
+    display: flex;
+
+    svg {
+      width: $default-icon-size;
+      height: $default-icon-size;
+    }
+
+    &_with-gap {
+      margin-right: shared.$step;
+    }
+  }
+
+  &_active &__icon {
+    stroke: $gray-12;
+  }
+
+  // Here's the way of how to customize icons
+  &-icon {
+    &_atom {
+      fill: white;
+    }
+  }
+
+  &_active &-icon {
+    &_atom {
+      fill: $gray-12;
+    }
+  }
+}

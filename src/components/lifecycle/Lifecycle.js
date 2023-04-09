@@ -1,8 +1,9 @@
+import { Card, Button, Space } from 'antd';
 import { useState } from 'react';
+import styled from 'styled-components';
+
 import Class from './components/class-based/Class';
 import Functional from './components/functional/Functional';
-import { Card, Button, Space } from 'antd';
-import styled from 'styled-components';
 
 const Lifecycle = function () {
   const [componentsState, setComponentsState] = useState({

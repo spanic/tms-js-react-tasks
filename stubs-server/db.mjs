@@ -1,5 +1,5 @@
-import { MongoClient } from 'mongodb';
 import * as dotenv from 'dotenv';
+import { MongoClient } from 'mongodb';
 
 dotenv.config(process.env.IN_DOCKER ? undefined : { path: '../.env' });
 const connectionString =

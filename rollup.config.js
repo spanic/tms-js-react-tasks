@@ -1,5 +1,6 @@
-import commonjs from '@rollup/plugin-commonjs';
 import cleanup from 'rollup-plugin-cleanup';
+
+import commonjs from '@rollup/plugin-commonjs';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {

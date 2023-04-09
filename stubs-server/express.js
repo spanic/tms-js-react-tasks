@@ -1,7 +1,8 @@
+import * as dotenv from 'dotenv';
 import express from 'express';
+
 import airlabs from './airlabs/index.js';
 import tasks from './tasks/tasks-v1.js';
-import * as dotenv from 'dotenv';
 
 dotenv.config();
 const app = express();

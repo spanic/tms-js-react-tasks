@@ -1,6 +1,6 @@
-import scheduledFlights from './scheduled-flights.stub.js';
 import airlinesData from './airlines-data.stub.js';
 import airportsData from './airports-data.stub.js';
+import scheduledFlights from './scheduled-flights.stub.js';
 
 function getScheduledFlights(req, res) {
   res.send({ response: scheduledFlights });
