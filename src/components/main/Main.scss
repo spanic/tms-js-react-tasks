@@ -1,0 +1,20 @@
+.main {
+  &__scroll {
+    border-radius: 5px;
+    background-color: #eb32e9;
+  }
+
+  &__navigation-links-container {
+    .ant-layout-sider-children {
+      position: fixed;
+      width: inherit;
+      // Uncomment these lines to backport native scroll
+      // height: calc(100% - 48px);
+      // overflow: auto;
+    }
+  }
+
+  &__content {
+    overflow-x: auto;
+  }
+}
