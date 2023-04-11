@@ -1,13 +1,17 @@
 import { Card, Col } from 'antd';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 
 import { BellOutlined } from '@ant-design/icons';
 
+import ShopItemContext from '../ShopItemContext';
 import SubscribePopup from './SubscribePopup';
 
 const ShopItemCard = function () {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const {
+    shopItem: { image, title, description },
+  } = useContext(ShopItemContext);
 
   return (
     <>
@@ -30,8 +34,9 @@ const ShopItemCard = function () {
               <SubscribeIcon />
             </span>,
           ]}
+          cover={<img src={image} alt={title} />}
         >
-          <Card.Meta title={'Title'} description={'Description'} />
+          <Card.Meta title={title} description={description} />
         </Card>
       </Col>
       <SubscribePopup
