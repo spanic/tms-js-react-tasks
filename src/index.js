@@ -8,6 +8,8 @@ import {
 
 import App from './App.js';
 import Airport from './components/airport/Airport.js';
+import ShopItem from './components/context/ShopItem.js';
+import Lifecycle from './components/lifecycle/Lifecycle.js';
 import Main from './components/main/Main.js';
 import TaskList from './components/task-list/TaskList.js';
 import TaskListWithReact from './components/task-list/v2/TaskList.js';
@@ -38,8 +40,16 @@ const router = createBrowserRouter([
         element: <TaskListWithReact />,
       },
       {
+        path: 'lifecycle',
+        element: <Lifecycle />,
+      },
+      {
         path: 'schedule',
         element: <Airport />,
+      },
+      {
+        path: 'context',
+        element: <ShopItem />,
       },
     ],
   },

@@ -1,9 +1,14 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import './MenuLink.scss';
 
-export default function MenuLink({ icon, path, collapsed, children }) {
+export default function MenuLink({ title, icon, path, collapsed }) {
+  /**
+   * As an icon you can use any custom SVG or, for example, Ant Design icons.
+   * If you're using custom SVG, plase make sure that you removed fill / stroke attributes from .svg
+   */
+
   const getLinkClass = useCallback(
     ({ isActive }) => {
       const classList = ['navigation-link'];
@@ -14,16 +19,10 @@ export default function MenuLink({ icon, path, collapsed, children }) {
     [collapsed]
   );
 
-  const iconClass = useMemo(() => {
-    const classList = ['navigation-link__icon'];
-    !collapsed && classList.push('navigation-link__icon_with-gap');
-    return classList.join(' ');
-  }, [collapsed]);
-
   return (
     <NavLink to={path} className={getLinkClass}>
-      {icon && <span className={iconClass}>{icon}</span>}
-      {!collapsed && children}
+      {icon && <span className="navigation-link__icon">{icon}</span>}
+      {!collapsed && <span className="navigation-link__title">{title}</span>}
     </NavLink>
   );
 }

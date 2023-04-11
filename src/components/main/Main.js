@@ -1,7 +1,8 @@
 import { Layout } from 'antd';
 import { useState } from 'react';
-import { Scrollbars } from 'react-custom-scrollbars';
 import { Outlet } from 'react-router-dom';
+
+import { FormatPainterOutlined } from '@ant-design/icons';
 
 import MenuLink from './components/menu-link/MenuLink.js';
 
@@ -9,6 +10,7 @@ import './Main.scss';
 
 import { ReactComponent as TaskListWithReactIcon } from './assets/atom-icon.svg';
 import { ReactComponent as AirportScheduleIcon } from './assets/calendar-days-icon.svg';
+import { ReactComponent as LifecycleIcon } from './assets/clock-icon.svg';
 import { ReactComponent as IntroIcon } from './assets/coffee-icon.svg';
 import { ReactComponent as TaskListIcon } from './assets/task-list-icon.svg';
 
@@ -29,53 +31,48 @@ const Main = () => {
         onCollapse={(value) => setCollapsed(value)}
         className="main__navigation-links-container"
       >
-        <Scrollbars
-          renderThumbVertical={(props) => (
-            <div {...props} className="main__scroll" />
-          )}
-          autoHide
-        >
-          <MenuLink icon={<IntroIcon />} path="/intro" collapsed={collapsed}>
-            Default
-          </MenuLink>
-          <MenuLink
-            icon={<TaskListIcon />}
-            path="/task-list-v1"
-            collapsed={collapsed}
-          >
-            Task List (JS)
-          </MenuLink>
-          <MenuLink
-            icon={
-              <TaskListWithReactIcon className="navigation-link-icon_atom" />
-            }
-            path="/task-list-v2"
-            collapsed={collapsed}
-          >
-            Task List (React)
-          </MenuLink>
-          <MenuLink
-            icon={<AirportScheduleIcon />}
-            path="/schedule"
-            collapsed={collapsed}
-          >
-            Airport schedule
-          </MenuLink>
-        </Scrollbars>
+        <MenuLink
+          title="Default"
+          icon={<IntroIcon />}
+          path="intro"
+          collapsed={collapsed}
+        />
+        <MenuLink
+          title="Task List (JS)"
+          icon={<TaskListIcon />}
+          path="task-list-v1"
+          collapsed={collapsed}
+        />
+        <MenuLink
+          title="Task List (React)"
+          icon={
+            <TaskListWithReactIcon className="navigation-link__icon_filled" />
+          }
+          path="task-list-v2"
+          collapsed={collapsed}
+        />
+        <MenuLink
+          title="Lifecycle"
+          icon={<LifecycleIcon className="navigation-link__icon_filled" />}
+          path="lifecycle"
+          collapsed={collapsed}
+        />
+        <MenuLink
+          title="Airport schedule"
+          icon={<AirportScheduleIcon />}
+          path="schedule"
+          collapsed={collapsed}
+        />
+        <MenuLink
+          title="Context"
+          icon={<FormatPainterOutlined />}
+          path="context"
+          collapsed={collapsed}
+        />
       </Sider>
       <Layout>
         <Content className="main__content">
-          <Scrollbars
-            renderThumbVertical={(props) => (
-              <div {...props} className="main__scroll" />
-            )}
-            renderThumbHorizontal={(props) => (
-              <div {...props} className="main__scroll" />
-            )}
-            autoHide
-          >
-            <Outlet />
-          </Scrollbars>
+          <Outlet />
         </Content>
       </Layout>
     </Layout>
