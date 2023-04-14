@@ -11,6 +11,7 @@ import Airport from './components/airport/Airport.js';
 import ShopItem from './components/context/ShopItem.js';
 import Lifecycle from './components/lifecycle/Lifecycle.js';
 import Main from './components/main/Main.js';
+import Shop from './components/shop/Shop.js';
 import TaskList from './components/task-list/TaskList.js';
 import TaskListWithReact from './components/task-list/v2/TaskList.js';
 
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: 'context',
         element: <ShopItem />,
+      },
+      {
+        path: 'shop',
+        element: <Shop />,
       },
     ],
   },

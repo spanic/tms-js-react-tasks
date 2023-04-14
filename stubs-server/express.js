@@ -2,6 +2,7 @@ import * as dotenv from 'dotenv';
 import express from 'express';
 
 import airlabs from './airlabs/index.js';
+import shop from './shop/index.js';
 import tasks from './tasks/tasks-v1.js';
 
 dotenv.config();
@@ -31,6 +32,9 @@ if (process.env.LOCAL_WITH_DOCKER_DB || process.env.IN_DOCKER) {
   app.delete('/tasks/v2/all', tasks_v2.removeAllTasks);
   app.patch('/tasks/v2/:id', tasks_v2.updateTask);
 }
+
+// Shop
+app.get('/products', shop.getProducts);
 
 app.listen(port, () => {
   console.log(`Stubs server listening on port ${port}`);

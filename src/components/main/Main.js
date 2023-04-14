@@ -8,6 +8,7 @@ import MenuLink from './components/menu-link/MenuLink.js';
 
 import './Main.scss';
 
+import { ReactComponent as ShopIcon } from '../shared/assets/shopping-cart.svg';
 import { ReactComponent as TaskListWithReactIcon } from './assets/atom-icon.svg';
 import { ReactComponent as AirportScheduleIcon } from './assets/calendar-days-icon.svg';
 import { ReactComponent as LifecycleIcon } from './assets/clock-icon.svg';
@@ -67,6 +68,12 @@ const Main = () => {
           title="Context"
           icon={<FormatPainterOutlined />}
           path="context"
+          collapsed={collapsed}
+        />
+        <MenuLink
+          title="Shop"
+          icon={<ShopIcon className="navigation-link__icon_filled" />}
+          path="shop"
           collapsed={collapsed}
         />
       </Sider>
