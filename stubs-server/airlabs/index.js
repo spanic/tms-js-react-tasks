@@ -1,21 +1,29 @@
-const { scheduledFlights } = require('./scheduled-flights.stub');
-const { airlinesData } = require('./airlines-data.stub');
-const { airportsData } = require('./airports-data.stub');
+import airlinesData from './airlines-data.stub.js';
+import airportsData from './airports-data.stub.js';
+import scheduledFlights from './scheduled-flights.stub.js';
 
-exports.getScheduledFlights = function (req, res) {
+function getScheduledFlights(req, res) {
   res.send({ response: scheduledFlights });
-};
+}
 
-exports.getAirlineData = function (req, res) {
-  res.send(airlinesData[req.query.icao_code]);
-};
+function getAirlineData(req, res) {
+  res.send({ response: airlinesData[req.query.icao_code] });
+}
 
-exports.getAirportsData = function (req, res) {
-  const requestedAirportIcaoCodes = req.query.icao_code?.split(',') || [];
+function getAirportsData(req, res) {
+  const requestedAirportsIcaoCodes = req.query.icao_code?.split(',');
+  if (requestedAirportsIcaoCodes?.length) {
+    const requestedAirportsData = airportsData.filter((airportData) =>
+      requestedAirportsIcaoCodes.includes(airportData.icao_code)
+    );
+    res.send({ response: requestedAirportsData });
+  } else {
+    res.status(200).json({ response: airportsData });
+  }
+}
 
-  const filteredAirportsData = airportsData.filter((airportData) =>
-    requestedAirportIcaoCodes.includes(airportData.icao_code)
-  );
-
-  res.status(200).send({ response: filteredAirportsData });
+export default {
+  getScheduledFlights,
+  getAirlineData,
+  getAirportsData,
 };

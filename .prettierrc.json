@@ -1,5 +1,7 @@
 {
   "singleQuote": true,
   "trailingComma": "es5",
-  "order": "concentric-css"
+  "order": "concentric-css",
+  "importOrderSeparation": true,
+  "importOrder": ["^@(.*)$", "^[./](.*)\\.[jt]sx?$", "^(.*)s?css$", "^[./]"]
 }
