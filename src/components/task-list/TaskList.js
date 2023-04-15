@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import './TaskList.scss';
 
 /**
@@ -22,6 +23,7 @@ import './TaskList.scss';
  *
  * @returns TaskList component
  */
+
 function TaskList() {
   useEffect(() => {
     const firstControlsRow =

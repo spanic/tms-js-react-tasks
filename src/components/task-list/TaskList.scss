@@ -1,3 +1,5 @@
+@use '../shared/styles/shared';
+
 $royal-blue-traditional: #0a2463ff;
 $imperial-red: #fb3640ff;
 $davys-gray: #605f5eff;
@@ -7,8 +9,6 @@ $magestic-green: #2f712f;
 $light-dimmed-green: #b5d2b5;
 $control-color-black: #000000;
 $control-color-gray: #e8e8e8;
-
-$step: 8px;
 
 $control-border-radius: 0.75em;
 $control-box-shadow-default-size: 0 0.23em 0 0;
@@ -75,22 +75,22 @@ $task-item-fade-in-fade-out-animation-length: 0.35s;
 }
 
 .task-list {
-  margin: 2 * $step;
+  margin: 2 * shared.$step;
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  padding: 2 * $step;
+  padding: 2 * shared.$step;
   min-width: 740px;
 
   &__row {
     display: flex;
-    column-gap: 2 * $step;
+    column-gap: 2 * shared.$step;
     flex-wrap: nowrap;
     align-items: center;
     white-space: nowrap;
   }
 
   & > &__row:not(:last-child) {
-    margin-bottom: 2 * $step;
+    margin-bottom: 2 * shared.$step;
   }
 
   &__button {
@@ -150,11 +150,11 @@ $task-item-fade-in-fade-out-animation-length: 0.35s;
   }
 
   &__item {
-    column-gap: 2 * $step;
+    column-gap: 2 * shared.$step;
     max-width: 900px;
 
     &:not(:last-child) {
-      margin-bottom: 2 * $step;
+      margin-bottom: 2 * shared.$step;
     }
 
     &_animated {
@@ -189,7 +189,7 @@ $task-item-fade-in-fade-out-animation-length: 0.35s;
     align-items: center;
     transition: transform ease 0.1s;
     background-color: $platinum;
-    padding: 2 * $step;
+    padding: 2 * shared.$step;
     width: 100%;
 
     &:hover {
@@ -215,7 +215,7 @@ $task-item-fade-in-fade-out-animation-length: 0.35s;
 
     &__controls {
       display: flex;
-      row-gap: $step;
+      row-gap: shared.$step;
       flex-flow: column;
       justify-content: space-between;
       align-items: flex-end;
