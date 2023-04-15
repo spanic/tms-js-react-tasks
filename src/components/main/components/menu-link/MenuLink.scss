@@ -1,0 +1,86 @@
+@use '../../../shared/styles/shared';
+
+$geek-blue-1: #f0f5ff;
+$geek-blue-8: #10239e;
+$geek-blue-9: #061178;
+$gray-12: #141414;
+
+$default-icon-size: 20px;
+
+.navigation-link {
+  display: flex;
+  align-items: center;
+  transition: background-color 0.1s ease;
+  margin: shared.$step;
+  border-radius: 6px;
+  background-color: $geek-blue-8;
+  padding: shared.$step;
+  color: white;
+
+  &:hover,
+  &:active {
+    background-color: $geek-blue-9;
+    color: white;
+  }
+
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &_active {
+    &,
+    &:hover,
+    &:active {
+      background-color: $geek-blue-1;
+      color: $gray-12;
+    }
+  }
+
+  &_collapsed {
+    justify-content: center;
+  }
+
+  &__icon {
+    stroke: white;
+    display: flex;
+
+    svg {
+      width: $default-icon-size;
+      height: $default-icon-size;
+    }
+
+    &_filled {
+      stroke: none;
+      fill: white;
+    }
+  }
+
+  &:not(&_collapsed) &__icon {
+    margin-right: shared.$step;
+  }
+
+  &_active &__icon {
+    stroke: $gray-12;
+
+    &_filled {
+      stroke: none;
+      fill: $gray-12;
+    }
+  }
+
+  /* Icons customization block */
+  &__icon_clock {
+    fill: red;
+  }
+
+  &_active &__icon_clock {
+    fill: $geek-blue-9;
+  }
+  /* END */
+
+  &__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

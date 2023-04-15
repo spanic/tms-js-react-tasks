@@ -15,6 +15,7 @@
         "name": "confirm"
       }
     ],
-    "no-var": "error"
+    "no-var": "error",
+    "import/no-anonymous-default-export": ["warn", { "allowObject": true }]
   }
 }

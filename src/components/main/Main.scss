@@ -1,0 +1,12 @@
+.main {
+  &__navigation-links-container {
+    .ant-layout-sider-children {
+      position: fixed;
+      width: inherit;
+    }
+  }
+
+  &__content {
+    overflow-x: auto;
+  }
+}

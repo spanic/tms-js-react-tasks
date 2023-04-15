@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Validates TaskList component renders "Show completed" button 1`] = `
+<button
+  class="task-list__button"
+  disabled=""
+>
+  Show completed
+</button>
+`;
+
+exports[`Validates TaskList component renders "Total" block 1`] = `
+<div>
+  Total: 
+  <span>
+    2
+  </span>
+</div>
+`;
+
+exports[`Validates TaskList component renders first task block 1`] = `
+<div
+  class="task-list__item task-list-item"
+>
+  <div
+    class="task-list-item__chevron"
+  />
+  <span
+    class="task-list-item__text"
+  >
+    Occaecat adipisicing dolor labore eu nostrud amet fugiat. Occaecat dolor aute mollit aute. Ad laborum elit Lorem exercitation non proident excepteur cupidatat deserunt ut cillum sit. Cupidatat quis sint velit ea consequat minim.
+  </span>
+  <div
+    class="task-list-item__controls"
+  >
+    <div
+      class="task-list__row"
+    >
+      <button
+        class="task-list__button task-list__button_complete"
+      >
+        Complete
+      </button>
+      <button
+        class="task-list__button task-list__button_remove"
+      />
+    </div>
+    <span
+      class="task-list-item__created-date"
+    >
+      02.03.2023 00:13 GMT+6
+    </span>
+  </div>
+</div>
+`;

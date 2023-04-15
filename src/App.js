@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 
 /**
  * Use this way to add imports from /src/js to be used inside React components
  */
 import { onClick } from './js/lesson_1/homework';
+import logo from './logo.svg';
 
 function App() {
   return (

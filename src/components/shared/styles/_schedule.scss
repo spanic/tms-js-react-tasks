@@ -1,0 +1,23 @@
+@use './shared';
+
+.schedule {
+  &__row {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+    align-items: center;
+    gap: 0 5 * shared.$step;
+    padding: shared.$step;
+    white-space: nowrap;
+  }
+
+  &-row {
+    &__cell {
+    }
+  }
+
+  &-cell {
+    &__value {
+    }
+  }
+}
