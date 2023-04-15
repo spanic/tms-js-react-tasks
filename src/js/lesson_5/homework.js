@@ -18,7 +18,74 @@
  *    ``` throw new Error('Request instance cannot be created: provided empty url'); ```
  */
 class Request {
-  // ...
+
+  #method;
+  #url;
+  #body;
+
+  constructor(method, url, body) {
+    this.#method = method;
+    this.#url = url;
+    this.#body = body;
+    Object.freeze(this);
+  }
+
+  get method() {
+    return this.#method;
+  }
+
+  set method(method) {
+    throw new Error(`Request instance is immutable, modification is not supported,
+    create a new object using Request.RequestBuilder() instead`);
+  }
+
+  get url() {
+    return this.#url;
+  }
+
+  set url(url) {
+    throw new Error(`Request instance is immutable, modification is not supported,
+    create a new object using Request.RequestBuilder() instead`);
+  }
+
+  get body() {
+    return this.#body;
+  }
+
+  set body(body) {
+    throw new Error(`Request instance is immutable, modification is not supported,
+    create a new object using Request.RequestBuilder() instead`);
+  }
+
+  static RequestBuilder = class {
+    #method;
+    #url;
+    #body;
+
+    setMethod(method) {
+      this.#method = method;
+      return this;
+    }
+
+    setUrl(url) {
+      this.#url = url;
+      return this;
+    }
+
+    setBody(body) {
+      this.#body = body;
+      return this;
+    }
+
+    build() {
+      if (!this.#url) {
+        throw new Error('Request instance cannot be created: provided empty url');
+      }
+
+      return new Request(this.#method, this.#url, this.#body);
+    }
+  }
+
 }
 
 export { Request };
