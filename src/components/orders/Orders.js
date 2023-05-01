@@ -43,7 +43,11 @@ export default function Orders() {
       <OrdersContent>
         <TopTitle>Orders:</TopTitle>
         <OrdersList orders={orders} />
-        <NewOrderButton type="primary" onClick={() => toggleModalOpen(true)}>
+        <NewOrderButton
+          type="primary"
+          onClick={() => toggleModalOpen(true)}
+          data-cy="new-order-button"
+        >
           New order
         </NewOrderButton>
       </OrdersContent>

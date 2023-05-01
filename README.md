@@ -27,7 +27,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 |----------------------------------------------|-----------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | React app + stubs server (dev. mode)         | Hot reload for React app and stubs server, no DB, no Docker                 | 1️⃣ `npm i` <br> 2️⃣ `npm run start`                                                                                                                                                                                                      |
 | React app + stubs server (dev. mode) + Mongo | Same as above, but connected to MongoDB served in Docker                    | 1️⃣ `npm i` <br> 2️⃣ Create `.env` file <br> 3️⃣ For the first time – `docker compose -f docker-compose.yml up mongo --build` <br> 3️⃣-a. Start __mongo__ container from Docker Desktop GUI <br> 4️⃣ `npm run start:with-db`                  |
-| React app (dev. mode) + stubs server + Mongo | Hot reload for React app, stubs server and MongoDB will be served in Docker | 1️⃣ `npm i` <br> 2️⃣ Create `.env` file <br> 3️⃣ For the first time – `docker compose -f docker-compose.yml up --build` <br> 3️⃣-a. Start __tms-js-react-tasks__ containers from Docker Desktop GUI <br> 4️⃣ `npm run start:with-docker`      |
+| React app (dev. mode) + stubs server + Mongo | Hot reload for React app, stubs server and MongoDB will be served in Docker | 1️⃣ `npm i` <br> 2️⃣ Create `.env` file <br> 3️⃣ For the first time – `docker compose -f docker-compose.yml up --build` <br> 3️⃣-a. Start __tms-js-react-tasks__ containers from Docker Desktop GUI <br> 4️⃣ `npm run start:ui-only`      |
 | React app (prod. mode)                       | No hot reload, stubs server and MongoDB will be served in Docker            | 1️⃣ `npm i` <br> 2️⃣ Create `.env` file <br> 3️⃣ For the first time – `docker compose -f docker-compose.yml up --build` <br> 3️⃣-a. Start __tms-js-react-tasks__ containers from Docker Desktop GUI <br> 4️⃣ `npm run serve`                  |
 
 ## Using Docker
@@ -63,7 +63,8 @@ Concurrently runs npm scripts to start application in development mode. App itse
 
 Same as `npm run start`, but stubs server will try to connect to pre-configured MongoDB database instance running in __mongo__ Docker container.
 
-### `npm run start:with-docker`
+### `npm run start:ui-only`
+
 Hot reload will be available only for React app, assuming that you've already launched docker with both __express__ and __mongo__ containers.
 
 ### `npm run test`
@@ -94,3 +95,16 @@ Same, but for [ESLint](https://eslint.org/)
 ### `npm run build:js`
 
 Bundles `src/js/public.js` using [rollup](https://rollupjs.org/) & copies it to the `/public` directory, avoiding built-in React application bundler.
+
+### `npm run cypress:open`
+
+Opens interactive [Cypress](https://www.cypress.io/) E2E test suite.
+> 🚨 Warning: execute any of the `npm run start*` commands before it! Cypress needs a running server to be tested.
+
+### `npm run cypress:run`
+
+Same as above, but in headless mode, without interactive UI. Results will be logged into the console.
+
+### `npm run cypress:ci`
+
+Runs production build, serves the app and tests it using Cypress in full-automatic headless mode. This command is triggered before commit and on CI.

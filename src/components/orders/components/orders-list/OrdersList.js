@@ -5,17 +5,21 @@ import styled from 'styled-components';
 
 export default function OrdersList({ orders }) {
   const ordersDataSource = useMemo(() => {
-    return orders.map((order) => {
-      return {
-        restaurantName: order.restaurantName,
-        created: moment(order.created).fromNow(),
-        updated: moment(order.updated || order.created).format(
-          'dddd, MMMM Do YYYY, HH:mm:ss'
-        ),
-        offers: order.offers,
-        totalPrice: order.totalPrice,
-      };
-    });
+    return (
+      (orders &&
+        orders.map((order) => {
+          return {
+            restaurantName: order.restaurantName,
+            created: moment(order.created).fromNow(),
+            updated: moment(order.updated || order.created).format(
+              'dddd, MMMM Do YYYY, HH:mm:ss'
+            ),
+            offers: order.offers,
+            totalPrice: order.totalPrice,
+          };
+        })) ||
+      []
+    );
   }, [orders]);
 
   return (
@@ -23,6 +27,7 @@ export default function OrdersList({ orders }) {
       bordered
       itemLayout="horizontal"
       dataSource={ordersDataSource}
+      data-cy="orders-list"
       renderItem={(order, index) => (
         <OrderListItem>
           <List.Item.Meta

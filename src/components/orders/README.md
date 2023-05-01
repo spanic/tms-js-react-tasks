@@ -44,6 +44,8 @@
 
    Функционал кнопки "Back to the list" - закрытие модала, очистка его состояния в redux store.
 
+3. Включите E2E-тест, убрав `skip` из [orders.cy.js](/cypress/e2e/orders.cy.js), выполните команду `npm run cypress:open` и убедитесь, что тестирование компонента завершается успешно.
+
 ### Результат
 
 При запуске `npm run serve` поведение должно соответствовать видеозаписи ниже:
@@ -95,6 +97,8 @@ Orders component allows to create orders for restaurants, like a regular deliver
    ![Orders new modal confirmation step expected result](./assets/Orders%20new%20modal%20confirmation%20step%20ER.png)
 
    "Back to the list" button functionality - closing the modal and resetting its state in redux store.
+
+3. Enable E2E-test by removing `skip` from [orders.cy.js](/cypress/e2e/orders.cy.js), then execute `npm run cypress:open` command and confirm that component's testing completes successfully.
 
 ### Result
 

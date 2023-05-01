@@ -7,6 +7,7 @@
 # ... and some extra files
 !/*.js
 !/*.json
+!/cypress
 
 /**/data
 /package-lock.json

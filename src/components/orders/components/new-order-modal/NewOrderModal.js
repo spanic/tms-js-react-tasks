@@ -120,6 +120,7 @@ export default function NewOrderModal({ isOpen, close, createNewOrder }) {
             type="primary"
             onClick={openNextStep}
             disabled={!currentStepState?.isValid}
+            data-cy="restaurants-next-step-btn"
           >
             Next step
           </Button>,
@@ -144,6 +145,7 @@ export default function NewOrderModal({ isOpen, close, createNewOrder }) {
             type="primary"
             disabled={!currentStepState?.isValid}
             onClick={onSubmitOrder}
+            data-cy="offers-submit-order-btn"
           >
             Submit order
           </Button>,
@@ -161,6 +163,7 @@ export default function NewOrderModal({ isOpen, close, createNewOrder }) {
       footer={stepsConfig[currentStepIdx].controls}
       destroyOnClose
       width="700px"
+      data-cy="new-order-modal"
     >
       <Steps current={currentStepIdx} items={stepsConfig} />
       <StepContentWrapper>

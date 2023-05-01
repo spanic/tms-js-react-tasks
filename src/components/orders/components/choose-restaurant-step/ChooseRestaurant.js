@@ -22,6 +22,7 @@ export default function ChooseRestaurant({
             <RadioButton
               value={restaurantId}
               onChange={() => onChoose?.(restaurantId)}
+              data-cy="restaurant-radio-btn"
             >
               <RestaurantType italic>{restaurant.type}</RestaurantType>
               <Title>{restaurant.name}</Title>
@@ -30,6 +31,7 @@ export default function ChooseRestaurant({
             </RadioButton>
           </List.Item>
         )}
+        data-cy="restaurants-list"
       />
     </Radio.Group>
   );

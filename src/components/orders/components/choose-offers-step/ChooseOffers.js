@@ -14,12 +14,13 @@ export default function ChooseOffers({ offers, value, onLoad, onChoose }) {
         dataSource={offers}
         renderItem={({ _id, name, price }) => (
           <List.Item>
-            <OfferCheckbox value={_id}>
+            <OfferCheckbox value={_id} data-cy="offer-checkbox">
               <Name>{name}</Name>
               <Price>{price}</Price>
             </OfferCheckbox>
           </List.Item>
         )}
+        data-cy="offers-list"
       />
     </OffersCheckboxGroup>
   );
