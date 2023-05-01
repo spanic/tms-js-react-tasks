@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Homeworks:
+
+1. [Orders component: Redux-Saga + Ant Design](/src/components/orders/README.md)
+2. ...
+
 ## Quick start
 1. Install [Node.js](https://nodejs.org/en/download/)
 2. Fork this repository
@@ -30,12 +35,21 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This application comes with 2 images to be served in Docker: __express__ (for stubs server) and __mongo__ (MongoDB).\
 ⚠️ Before using them don't forget to create the `.env` file in the project root folder with the following contents:
 
-> `MONGO_USER={username}`\
-> `MONGO_PASSWORD={password}`\
-> `MONGO_DB=tasks`\
-> `MONGO_INITDB_ROOT_USERNAME={root_username}`\
-> `MONGO_INITDB_ROOT_PASSWORD={root_password}`\
-> `MONGO_INITDB_DATABASE=admin`
+```
+# Airlabs (https://airlabs.co/) API key
+AIRLABS_API_KEY={your_airlabs.co_api_key}
+
+# MongoDB parameters (start Docker container to use it)
+MONGO_USER={any_username}
+MONGO_PASSWORD={any_password}
+
+MONGO_TASKS_DB=tasks
+MONGO_ORDERS_DB=orders
+
+MONGO_INITDB_ROOT_USERNAME={any_username}
+MONGO_INITDB_ROOT_PASSWORD={any_password}
+MONGO_INITDB_DATABASE=admin
+```
 
 and replace the data in `{...}` by your own preference.
 

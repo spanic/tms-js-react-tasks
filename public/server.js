@@ -26,9 +26,13 @@ app.use(
 );
 
 app.use(
-  '/tasks',
+  ['/tasks', '/shop/api', '/orders/api'],
   createProxyMiddleware({
     target: 'http://localhost:3001',
+    pathRewrite: {
+      '^/shop/api': '',
+      '^/orders/api': '',
+    },
     changeOrigin: true,
   })
 )

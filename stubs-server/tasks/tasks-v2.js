@@ -1,6 +1,8 @@
 import { ObjectId } from 'mongodb';
 
-import db from '../db.mjs';
+import connect from '../mongo-db/db-connection.js';
+
+const db = await connect(process.env.MONGO_TASKS_DB);
 
 async function getAllTasks(req, res) {
   const collection = await db.collection('tasks');

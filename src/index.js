@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import {
   Navigate,
   RouterProvider,
@@ -11,9 +12,11 @@ import Airport from './components/airport/Airport.js';
 import ShopItem from './components/context/ShopItem.js';
 import Lifecycle from './components/lifecycle/Lifecycle.js';
 import Main from './components/main/Main.js';
+import Orders from './components/orders/Orders.js';
 import Shop from './components/shop/Shop.js';
 import TaskList from './components/task-list/TaskList.js';
 import TaskListWithReact from './components/task-list/v2/TaskList.js';
+import { store } from './store.js';
 
 import './index.css';
 
@@ -56,12 +59,20 @@ const router = createBrowserRouter([
         path: 'shop',
         element: <Shop />,
       },
+      {
+        path: 'orders',
+        element: <Orders />,
+      },
     ],
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<RouterProvider router={router}></RouterProvider>);
+root.render(
+  <Provider store={store}>
+    <RouterProvider router={router}></RouterProvider>
+  </Provider>
+);
 
 /**
  * Add scripts as cjs modules via require() to include them inside the main JS bundle

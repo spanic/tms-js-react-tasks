@@ -13,6 +13,7 @@ import { ReactComponent as TaskListWithReactIcon } from './assets/atom-icon.svg'
 import { ReactComponent as AirportScheduleIcon } from './assets/calendar-days-icon.svg';
 import { ReactComponent as LifecycleIcon } from './assets/clock-icon.svg';
 import { ReactComponent as IntroIcon } from './assets/coffee-icon.svg';
+import { ReactComponent as OrderIcon } from './assets/order-icon.svg';
 import { ReactComponent as TaskListIcon } from './assets/task-list-icon.svg';
 
 const { Content, Sider } = Layout;
@@ -74,6 +75,12 @@ const Main = () => {
           title="Shop"
           icon={<ShopIcon className="navigation-link__icon_filled" />}
           path="shop"
+          collapsed={collapsed}
+        />
+        <MenuLink
+          title="Orders"
+          icon={<OrderIcon />}
+          path="orders"
           collapsed={collapsed}
         />
       </Sider>
