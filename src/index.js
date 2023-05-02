@@ -9,6 +9,7 @@ import {
 
 import App from './App.js';
 import Airport from './components/airport/Airport.js';
+import Alarm from './components/alarm/Alarm.js';
 import ShopItem from './components/context/ShopItem.js';
 import Lifecycle from './components/lifecycle/Lifecycle.js';
 import Main from './components/main/Main.js';
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: 'orders',
         element: <Orders />,
+      },
+      {
+        path: 'alarm',
+        element: <Alarm />,
       },
     ],
   },

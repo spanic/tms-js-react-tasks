@@ -9,6 +9,7 @@ import MenuLink from './components/menu-link/MenuLink.js';
 import './Main.scss';
 
 import { ReactComponent as ShopIcon } from '../shared/assets/shopping-cart.svg';
+import { ReactComponent as AlarmIcon } from './assets/alarm-icon.svg';
 import { ReactComponent as TaskListWithReactIcon } from './assets/atom-icon.svg';
 import { ReactComponent as AirportScheduleIcon } from './assets/calendar-days-icon.svg';
 import { ReactComponent as LifecycleIcon } from './assets/clock-icon.svg';
@@ -81,6 +82,12 @@ const Main = () => {
           title="Orders"
           icon={<OrderIcon />}
           path="orders"
+          collapsed={collapsed}
+        />
+        <MenuLink
+          title="Alarm"
+          icon={<AlarmIcon />}
+          path="alarm"
           collapsed={collapsed}
         />
       </Sider>
