@@ -4,9 +4,13 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+
+describe('Validates TaskList component', () => {
+
 import TaskList from './TaskList';
 
 xdescribe('Validates TaskList component', () => {
+
   test('renders "Delete all button"', () => {
     render(<TaskList />);
     const deleteAllButtonEl = screen.getByText(/delete all/i, {
