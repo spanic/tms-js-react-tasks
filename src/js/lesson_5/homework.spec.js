@@ -1,6 +1,6 @@
 import { Request } from './homework';
 
-xdescribe('Validating Request builder', () => {
+describe('Validating Request builder', () => {
   let method, url, body;
 
   beforeAll(() => {
