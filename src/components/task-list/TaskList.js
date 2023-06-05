@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { useEffect } from 'react';
 
 import './TaskList.scss';
@@ -38,6 +39,11 @@ function TaskList() {
     function createButtonWithClass(...className) {
       const button = createElementWithClass('button', ...className);
       return button;
+    }
+
+    function changeCountOfTotalTasks() {
+      const countOfTotal = document.querySelectorAll('.task-list__item').length;
+      totalTextBlock.innerHTML = `Total: <span></span>${countOfTotal}</span>`;
     }
 
     const enterTaskInput = createElementWithClass('input', 'task-list__input');
@@ -132,22 +138,62 @@ function TaskList() {
     /**
      * Add new task
      */
-    // ...
+    const addButton = document.querySelector('#addBtn');
+    addButton.addEventListener('click', (event) => {
+      const textFromInput = enterTaskInput.value.trim();
+      if (!textFromInput) {
+        return;
+      }
+      const htmlElementsOfTask = `<div class="task-list__item task-list-item task-list__item_animated"><div class="task-list-item__chevron"></div><span class="task-list-item__text">${textFromInput}</span><div class="task-list-item__controls"><div class="task-list__row"><button class="task-list__button task-list__button_complete">Complete</button><button class="task-list__button task-list__button_remove"></button></div><span class="task-list-item__created-date">${moment().format(
+        'DD.MM.YYYY	HH:mm'
+      )}</span></div></div>`;
+      taskListContainer.insertAdjacentHTML('afterbegin', htmlElementsOfTask);
+      enterTaskInput.value = '';
+      changeCountOfTotalTasks();
+    });
 
     /**
      * Delete all tasks
      */
-    // ...
+    deleteAllButton.addEventListener('click', (event) => {
+      const arrayOfTasksBlock =
+        taskListContainer.querySelectorAll('.task-list__item');
+      for (const item of arrayOfTasksBlock) {
+        item.remove();
+      }
+    });
 
     /**
      * Delete task
      */
-    // ...
+    taskListContainer.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!target.closest('button.task-list__button_remove')) {
+        return;
+      }
+      const itemForRemove = target.closest('div.task-list-item');
+      itemForRemove.classList.add('task-list__item_animated-remove');
+      itemForRemove.addEventListener('animationend', () => {
+        itemForRemove.remove();
+        changeCountOfTotalTasks();
+      });
+    });
 
     /**
      * Complete task
      */
-    // ...
+    taskListContainer.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!target.closest('button.task-list__button_complete')) {
+        return;
+      }
+      const parentOfTextBlock = target.closest('div.task-list-item');
+      const textForComplete = parentOfTextBlock.querySelector(
+        'span.task-list-item__text'
+      );
+      textForComplete.classList.add('task-list-item__text_completed');
+      parentOfTextBlock.classList.add('task-list-item_completed');
+    });
   }, []);
 
   return (
