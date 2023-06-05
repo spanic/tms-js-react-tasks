@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 
 import TaskList from './TaskList';
 
-xdescribe('Validates TaskList component', () => {
+describe('Validates TaskList component', () => {
   test('renders "Delete all button"', () => {
     render(<TaskList />);
     const deleteAllButtonEl = screen.getByText(/delete all/i, {

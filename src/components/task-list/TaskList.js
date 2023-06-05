@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { useEffect } from 'react';
 
 import './TaskList.scss';
@@ -27,42 +28,172 @@ function TaskList() {
     /**
      * "Enter your task here..." input
      */
-    // ...
+    function createElementWithClass(tag, ...className) {
+      const element = document.createElement(tag);
+      if (className) {
+        element.classList.add(...className);
+      }
+      return element;
+    }
 
+    function createButtonWithClass(...className) {
+      const button = createElementWithClass('button', ...className);
+      return button;
+    }
+
+    function changeCountOfTotalTasks() {
+      const countOfTotal = document.querySelectorAll('.task-list__item').length;
+      totalTextBlock.innerHTML = `Total: <span></span>${countOfTotal}</span>`;
+    }
+
+    const enterTaskInput = createElementWithClass('input', 'task-list__input');
+    enterTaskInput.setAttribute('id', 'taskTextInput');
+    enterTaskInput.setAttribute('type', 'text');
+    enterTaskInput.setAttribute('placeholder', 'Enter your task here...');
+
+    const lastElementOfRow = firstControlsRow.lastElementChild;
+    lastElementOfRow.before(enterTaskInput);
+
+    const secondControlsRow =
+      document.getElementsByClassName('task-list__row')[1];
     /**
      * "Total:" div
      */
-    // ...
+    const totalTextBlock = createElementWithClass('div');
+    totalTextBlock.innerHTML = 'Total: <span>2</span>';
+    secondControlsRow.prepend(totalTextBlock);
 
     /**
      * "Show completed" button
      */
-    // ...
+    const showCompletedButton = createElementWithClass(
+      'button',
+      'task-list__button'
+    );
+    showCompletedButton.setAttribute('disabled', '');
+    showCompletedButton.textContent = 'Show completed';
+    const nextChildElementOfShowCompletedButton =
+      secondControlsRow.querySelector('.task-list__input');
+    nextChildElementOfShowCompletedButton.before(showCompletedButton);
 
     /**
      * First task item (<div className="task-list__item">)
      */
-    // ...
+    const taskListContainer = document.querySelector('.task-list__container');
+
+    const blockOfTask = createElementWithClass(
+      'div',
+      'task-list__item',
+      'task-list-item'
+    );
+
+    const arrayInBlockTask = createElementWithClass(
+      'div',
+      'task-list-item__chevron'
+    );
+
+    const textInBlockTask = createElementWithClass(
+      'span',
+      'task-list-item__text'
+    );
+    textInBlockTask.textContent =
+      'Occaecat adipisicing dolor labore eu nostrud amet fugiat. Occaecat dolor aute mollit aute. Ad laborum elit Lorem exercitation non proident excepteur cupidatat deserunt ut cillum sit. Cupidatat quis sint velit ea consequat minim.';
+
+    const controlsInBlockTask = createElementWithClass(
+      'div',
+      'task-list-item__controls'
+    );
+
+    const rowInControlsInBlockTask = createElementWithClass(
+      'div',
+      'task-list__row'
+    );
+
+    const buttonCompleteInBlockTask = createButtonWithClass(
+      'task-list__button',
+      'task-list__button_complete'
+    );
+    buttonCompleteInBlockTask.textContent = 'Complete';
+
+    const buttonRemoveInBlockTask = createButtonWithClass(
+      'task-list__button',
+      'task-list__button_remove'
+    );
+
+    const dateInBlockTask = createElementWithClass(
+      'span',
+      'task-list-item__created-date'
+    );
+    dateInBlockTask.textContent = '02.03.2023 00:13 GMT+6';
+
+    taskListContainer.prepend(blockOfTask);
+    blockOfTask.prepend(arrayInBlockTask);
+    arrayInBlockTask.after(textInBlockTask);
+    textInBlockTask.after(controlsInBlockTask);
+    controlsInBlockTask.prepend(rowInControlsInBlockTask);
+    controlsInBlockTask.append(dateInBlockTask);
+    rowInControlsInBlockTask.prepend(buttonCompleteInBlockTask);
+    rowInControlsInBlockTask.append(buttonRemoveInBlockTask);
 
     /**
      * Add new task
      */
-    // ...
+    const addButton = document.querySelector('#addBtn');
+    addButton.addEventListener('click', (event) => {
+      const textFromInput = enterTaskInput.value.trim();
+      if (!textFromInput) {
+        return;
+      }
+      const htmlElementsOfTask = `<div class="task-list__item task-list-item task-list__item_animated"><div class="task-list-item__chevron"></div><span class="task-list-item__text">${textFromInput}</span><div class="task-list-item__controls"><div class="task-list__row"><button class="task-list__button task-list__button_complete">Complete</button><button class="task-list__button task-list__button_remove"></button></div><span class="task-list-item__created-date">${moment().format(
+        'DD.MM.YYYY	HH:mm'
+      )}</span></div></div>`;
+      taskListContainer.insertAdjacentHTML('afterbegin', htmlElementsOfTask);
+      enterTaskInput.value = '';
+      changeCountOfTotalTasks();
+    });
 
     /**
      * Delete all tasks
      */
-    // ...
+    deleteAllButton.addEventListener('click', (event) => {
+      const arrayOfTasksBlock =
+        taskListContainer.querySelectorAll('.task-list__item');
+      for (const item of arrayOfTasksBlock) {
+        item.remove();
+      }
+    });
 
     /**
      * Delete task
      */
-    // ...
+    taskListContainer.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!target.closest('button.task-list__button_remove')) {
+        return;
+      }
+      const itemForRemove = target.closest('div.task-list-item');
+      itemForRemove.classList.add('task-list__item_animated-remove');
+      itemForRemove.addEventListener('animationend', () => {
+        itemForRemove.remove();
+        changeCountOfTotalTasks();
+      });
+    });
 
     /**
      * Complete task
      */
-    // ...
+    taskListContainer.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!target.closest('button.task-list__button_complete')) {
+        return;
+      }
+      const parentOfTextBlock = target.closest('div.task-list-item');
+      const textForComplete = parentOfTextBlock.querySelector(
+        'span.task-list-item__text'
+      );
+      textForComplete.classList.add('task-list-item__text_completed');
+      parentOfTextBlock.classList.add('task-list-item_completed');
+    });
   }, []);
 
   return (
@@ -77,29 +208,29 @@ function TaskList() {
           </button>
         */}
         {/* Добавьте вручную: */}
-        <input
+        {/* <input
           id="taskTextInput"
           className="task-list__input"
           type="text"
           placeholder="Enter your task here..."
-        ></input>
+        ></input> */}
         <button id="addBtn" className="task-list__button">
           Add
         </button>
       </div>
       <div className="task-list__row">
         {/* Добавьте вручную: */}
-        <div>
+        {/* <div>
           Total: <span>2</span>
-        </div>
+        </div> */}
         <div>
           Completed: <span>1</span>
         </div>
         <button className="task-list__button">Show all</button>
         {/* Добавьте вручную: */}
-        <button className="task-list__button" disabled>
+        {/* <button className="task-list__button" disabled>
           Show completed
-        </button>
+        </button> */}
         <input
           className="task-list__input"
           type="search"
@@ -109,6 +240,7 @@ function TaskList() {
       </div>
       <div className="task-list__container">
         {/* Добавьте вручную: */}
+        {/* 
         <div className="task-list__item task-list-item">
           <div className="task-list-item__chevron"></div>
           <span className="task-list-item__text">
@@ -128,7 +260,7 @@ function TaskList() {
               02.03.2023 00:13 GMT+6
             </span>
           </div>
-        </div>
+        </div> */}
         <div className="task-list__item task-list-item">
           <div className="task-list-item__chevron"></div>
           <span className="task-list-item__text">
