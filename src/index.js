@@ -82,8 +82,8 @@ root.render(
 /**
  * Add scripts as cjs modules via require() to include them inside the main JS bundle
  */
-// require('./js/lesson_1');
-// require('./js/lesson_2');
+//require('./js/lesson_1');
+require('./js/lesson_2');
 // require('./js/lesson_3');
 // require('./js/lesson_4');
 // require('./js/lesson_5');
