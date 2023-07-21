@@ -6,6 +6,7 @@ import userEvent from '@testing-library/user-event';
 
 import TaskList from './TaskList';
 
+// Temporary opted out these tests, should be fixed later
 xdescribe('Validates TaskList component', () => {
   test('renders "Delete all button"', () => {
     render(<TaskList />);

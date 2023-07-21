@@ -2,7 +2,7 @@
 
 # editor settings
 .vscode
-.nova
+.idea
 
 # dependencies
 /node_modules

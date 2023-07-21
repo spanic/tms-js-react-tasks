@@ -3,5 +3,6 @@
   "trailingComma": "es5",
   "order": "concentric-css",
   "importOrderSeparation": true,
+  "tabWidth": 2,
   "importOrder": ["^@(.*)$", "^[./](.*)\\.[jt]sx?$", "^(.*)s?css$", "^[./]"]
 }

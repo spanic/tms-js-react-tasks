@@ -4,8 +4,14 @@ import './TaskList.scss';
 
 function TaskList() {
   useEffect(() => {
-    const firstControlsRow =
-      document.getElementsByClassName('task-list__row')[0];
+    /**
+     * Getting tasks from the server
+     */
+    fetch('/tasks')
+      .then((response) => response.ok && response.json())
+      .then((data) => {
+        // ...
+      });
 
     /**
      * "Delete all" button
@@ -15,14 +21,9 @@ function TaskList() {
     const deleteAllButtonText = document.createTextNode('Delete all');
 
     deleteAllButton.append(deleteAllButtonText);
+    const firstControlsRow =
+      document.getElementsByClassName('task-list__row')[0];
     firstControlsRow.prepend(deleteAllButton);
-
-    /**
-     * "Delete last" button
-     */
-    const deleteLastButton = deleteAllButton.cloneNode(true);
-    deleteLastButton.firstChild.textContent = 'Delete last';
-    firstControlsRow.prepend(deleteLastButton);
 
     /**
      * "Enter your task here..." input
@@ -36,11 +37,6 @@ function TaskList() {
 
     /**
      * "Show completed" button
-     */
-    // ...
-
-    /**
-     * First task item (<div className="task-list__item">)
      */
     // ...
 
@@ -68,15 +64,10 @@ function TaskList() {
   return (
     <div id="task-list" className="task-list">
       <div className="task-list__row">
-        {/* Пример:
-          <button className="task-list-button-new">
-            <span className="task-list-button-new__top">Delete all</span>
-          </button>
-          <button className="task-list-button-new">
-            <span className="task-list-button-new__top">Delete last</span>
-          </button>
-        */}
-        {/* Добавьте вручную: */}
+        {/* Add it manually: */}
+        {/* <button className="task-list__button">Delete all</button> */}
+        <button className="task-list__button">Delete last</button>
+        {/* Add it manually: */}
         <input
           id="taskTextInput"
           className="task-list__input"
@@ -88,7 +79,7 @@ function TaskList() {
         </button>
       </div>
       <div className="task-list__row">
-        {/* Добавьте вручную: */}
+        {/* Add it manually: */}
         <div>
           Total: <span>2</span>
         </div>
@@ -96,7 +87,7 @@ function TaskList() {
           Completed: <span>1</span>
         </div>
         <button className="task-list__button">Show all</button>
-        {/* Добавьте вручную: */}
+        {/* Add it manually: */}
         <button className="task-list__button" disabled>
           Show completed
         </button>
@@ -107,49 +98,7 @@ function TaskList() {
           disabled
         ></input>
       </div>
-      <div className="task-list__container">
-        {/* Добавьте вручную: */}
-        <div className="task-list__item task-list-item">
-          <div className="task-list-item__chevron"></div>
-          <span className="task-list-item__text">
-            Occaecat adipisicing dolor labore eu nostrud amet fugiat. Occaecat
-            dolor aute mollit aute. Ad laborum elit Lorem exercitation non
-            proident excepteur cupidatat deserunt ut cillum sit. Cupidatat quis
-            sint velit ea consequat minim.
-          </span>
-          <div className="task-list-item__controls">
-            <div className="task-list__row">
-              <button className="task-list__button task-list__button_complete">
-                Complete
-              </button>
-              <button className="task-list__button task-list__button_remove"></button>
-            </div>
-            <span className="task-list-item__created-date">
-              02.03.2023 00:13 GMT+6
-            </span>
-          </div>
-        </div>
-        <div className="task-list__item task-list-item">
-          <div className="task-list-item__chevron"></div>
-          <span className="task-list-item__text">
-            Reprehenderit exercitation consequat occaecat laboris excepteur.
-            Lorem consequat pariatur aute incididunt velit culpa consequat
-            proident occaecat magna culpa esse qui veniam. Minim proident
-            occaecat eiusmod id non minim officia aliqua.
-          </span>
-          <div className="task-list-item__controls">
-            <div className="task-list__row">
-              <button className="task-list__button task-list__button_complete">
-                Complete
-              </button>
-              <button className="task-list__button task-list__button_remove"></button>
-            </div>
-            <span className="task-list-item__created-date">
-              02.03.2023 00:29 GMT+6
-            </span>
-          </div>
-        </div>
-      </div>
+      <div className="task-list__container"></div>
     </div>
   );
 }
