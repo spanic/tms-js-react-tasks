@@ -7,11 +7,7 @@ function TaskList() {
     /**
      * Getting tasks from the server
      */
-    fetch('/tasks')
-      .then((response) => response.ok && response.json())
-      .then((data) => {
-        // ...
-      });
+    getTasks();
 
     /**
      * "Delete all" button
@@ -100,6 +96,38 @@ function TaskList() {
       </div>
       <div className="task-list__container"></div>
     </div>
+  );
+}
+
+function getTasks() {
+  // ...
+}
+
+function addTask(text, animated = false) {
+  const taskListContainer = document.querySelector('div.task-list__container');
+  taskListContainer.insertAdjacentHTML(
+    'afterbegin',
+    `
+    <div class="task-list__item task-list-item ${
+      animated ? 'task-list__item_animated' : ''
+    }">
+      <div class="task-list-item__chevron"></div>
+      <span class="task-list-item__text">
+        ${text}
+      </span>
+      <div class="task-list-item__controls">
+        <div class="task-list__row">
+          <button class="task-list__button task-list__button_complete">
+            Complete
+          </button>
+          <button class="task-list__button task-list__button_remove"></button>
+        </div>
+        <span class="task-list-item__created-date">
+          02.03.2023 00:13 GMT+6
+        </span>
+      </div>
+    </div>
+    `
   );
 }
 

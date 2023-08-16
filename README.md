@@ -4,8 +4,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Homeworks:
 
-1. [Orders component: Redux-Saga + Ant Design](/src/components/orders/README.md)
-2. ...
+1. [Task list component (JS): DOM API, events, fetching data](/src/components/task-list/README.md)
+2. [Orders component: Redux-Saga + Ant Design](/src/components/orders/README.md)
+3. ...
 
 ## Quick start
 1. Install [Node.js](https://nodejs.org/en/download/)
