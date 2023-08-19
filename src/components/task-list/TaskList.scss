@@ -207,10 +207,6 @@ $task-item-fade-in-fade-out-animation-length: 0.35s;
     &__text {
       flex-grow: 1;
       word-break: break-word;
-
-      &_completed {
-        text-decoration: line-through;
-      }
     }
 
     &__controls {
@@ -228,6 +224,10 @@ $task-item-fade-in-fade-out-animation-length: 0.35s;
     &_completed {
       transition: background-color ease 0.1s;
       background-color: $light-dimmed-green;
+    }
+
+    &_completed &__text {
+      text-decoration: line-through;
     }
   }
 }

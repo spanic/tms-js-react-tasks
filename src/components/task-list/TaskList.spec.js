@@ -13,7 +13,12 @@ xdescribe('Validates TaskList component', () => {
   // ======= MSW mock server setup START =======
   const handlers = [
     rest.get('/tasks', (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json({ 1: { text: 'Test task' } }));
+      return res(
+        ctx.status(200),
+        ctx.json({
+          'd1f4723c-c1a9-4956-992f-d66097e659a1': { text: 'Test task' },
+        })
+      );
     }),
   ];
   const server = setupServer(...handlers);
@@ -147,7 +152,7 @@ xdescribe('Validates TaskList component', () => {
     await user.click(completeButton);
 
     const completedTaskItem = document.querySelector(
-      '.task-list-item_completed .task-list-item__text_completed'
+      '.task-list-item_completed'
     );
     return expect(completedTaskItem).toBeInTheDocument();
   });

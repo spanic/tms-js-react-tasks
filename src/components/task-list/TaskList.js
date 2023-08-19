@@ -14,9 +14,14 @@ function TaskList() {
      */
     const deleteAllButton = document.createElement('button');
     deleteAllButton.className = 'task-list__button';
-    const deleteAllButtonText = document.createTextNode('Delete all');
+    deleteAllButton.setAttribute(
+      'data-cy',
+      'task-list-v.1-task-remove-all-btn'
+    );
 
+    const deleteAllButtonText = document.createTextNode('Delete all');
     deleteAllButton.append(deleteAllButtonText);
+
     const firstControlsRow =
       document.getElementsByClassName('task-list__row')[0];
     firstControlsRow.prepend(deleteAllButton);
@@ -61,7 +66,12 @@ function TaskList() {
     <div id="task-list" className="task-list">
       <div className="task-list__row">
         {/* Add it manually: */}
-        {/* <button className="task-list__button">Delete all</button> */}
+        {/* <button
+          className="task-list__button"
+          data-cy="task-list-v.1-task-remove-all-btn"
+        >
+          Delete all
+        </button> */}
         <button className="task-list__button">Delete last</button>
         {/* Add it manually: */}
         <input
@@ -69,8 +79,13 @@ function TaskList() {
           className="task-list__input"
           type="text"
           placeholder="Enter your task here..."
+          data-cy="task-list-v.1-text-input"
         ></input>
-        <button id="addBtn" className="task-list__button">
+        <button
+          id="addBtn"
+          className="task-list__button"
+          data-cy="task-list-v.1-add-task-btn"
+        >
           Add
         </button>
       </div>
@@ -94,7 +109,10 @@ function TaskList() {
           disabled
         ></input>
       </div>
-      <div className="task-list__container"></div>
+      <div
+        className="task-list__container"
+        data-cy="task-list-v.1-container"
+      ></div>
     </div>
   );
 }
@@ -108,7 +126,7 @@ function addTask(text, animated = false) {
   taskListContainer.insertAdjacentHTML(
     'afterbegin',
     `
-    <div class="task-list__item task-list-item ${
+    <div data-cy="task-list-v.1-task" class="task-list__item task-list-item ${
       animated ? 'task-list__item_animated' : ''
     }">
       <div class="task-list-item__chevron"></div>
@@ -117,10 +135,10 @@ function addTask(text, animated = false) {
       </span>
       <div class="task-list-item__controls">
         <div class="task-list__row">
-          <button class="task-list__button task-list__button_complete">
+          <button class="task-list__button task-list__button_complete" data-cy="task-list-v.1-task-complete-btn">
             Complete
           </button>
-          <button class="task-list__button task-list__button_remove"></button>
+          <button class="task-list__button task-list__button_remove" data-cy="task-list-v.1-task-remove-btn"></button>
         </div>
         <span class="task-list-item__created-date">
           02.03.2023 00:13 GMT+6

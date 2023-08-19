@@ -6,13 +6,7 @@ export default function Task({ task, complete }) {
       }`}
     >
       <div className="task-list-item__chevron"></div>
-      <span
-        className={`task-list-item__text ${
-          task.completed && 'task-list-item__text_completed'
-        }`}
-      >
-        {task.text}
-      </span>
+      <span className={'task-list-item__text'}>{task.text}</span>
       <div className="task-list-item__controls">
         <div className="task-list__row">
           <button
